@@ -1,0 +1,31 @@
+
+// This code could be on functions.php on child theme ****
+
+function edd_menu_def( $atts ) {
+
+   $a = shortcode_atts( array(
+		'hair' => '',
+	    'massage' => '',
+	    'facial' => '',
+	    'nails' => '',
+	    'waxing' => ''
+
+   ), $atts );
+
+	foreach ($a as $key=>$val) {
+		if( $val != "" ){
+			$a[$key] = "default-gal";
+		}
+	}
+
+
+   $html = 	'<div id="menu_gal"><span><a href="../gallery-hair" class="'.$a["hair"].'">Hair </a>'.get_edit_btn('hair').'</span>'.
+			'<span><a href="../gallery-massage" class="'.$a["massage"].'">Massage </a>'.get_edit_btn('massage').'</span>'.
+			'<span><a href="../gallery-facial" class="'.$a["facial"].'">Facial </a>'.get_edit_btn('facial').'</span>'.
+			'<span><a href="../gallery-nails" class="'.$a["nails"].'">Nails </a>'.get_edit_btn('nails').'</span>'.
+			'<span><a href="../gallery-waxing" class="'.$a["waxing"].'">Waxing </a>'.get_edit_btn('waxing').'</span><div/>';
+
+   return $html;
+}
+
+add_shortcode( 'edd_menu', 'edd_menu_def');

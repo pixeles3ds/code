@@ -1,0 +1,129 @@
+
+---------------------------------------------------------------------------
+	Llamar objeto wp
+---------------------------------------------------------------------------
+
+global $wpdb;
+
+
+
+---------------------------------------------------------------------------
+	Crear un Query Apropiadamente
+---------------------------------------------------------------------------
+
+$sql = $wpdb->prepare(
+	"
+	SELECT  meta_value
+	FROM {$wpdb->prefix}usermeta
+	WHERE meta_key = 'activation_key' and user_id = $id
+	"
+	,1
+);
+
+
+
+---------------------------------------------------------------------------
+	Optener Variable Directamente
+---------------------------------------------------------------------------
+
+$sql = $wpdb->prepare(" SELECT umeta_id as id FROM wp_usermeta WHERE user_id = $id AND meta_key = 'suavaa_user_location' ",1);
+$val = $wpdb->get_var( $sql );	
+
+
+
+---------------------------------------------------------------------------
+	Obtener Datos en foreach
+---------------------------------------------------------------------------
+
+$sql = $wpdb->prepare(" SELECT id, name FROM wp_bp_locations_countries ORDER BY name ASC");
+$result = $wpdb->get_results( $sql );
+
+foreach( $result as $d) {
+	echo $d->id;
+	echo $d->name;
+}
+
+
+
+
+---------------------------------------------------------------------------
+	Insert
+---------------------------------------------------------------------------
+
+$wpdb->insert(
+	$wpdb->prefix.'usermeta',
+	array(
+		'user_id' => $id,
+		'meta_key' => 'suavaa_user_location',
+		'meta_value' => $data
+	)
+);
+
+$lastid = $wpdb->insert_id;
+
+
+---------------------------------------------------------------------------
+	Update
+---------------------------------------------------------------------------
+
+$wpdb->update( 
+	$wpdb->prefix.'table',
+	array(
+		'column1'=>$data1,
+		'column2'=>$data2
+	),
+	array('id'=>$id)
+);
+
+
+---------------------------------------------------------------------------
+	Delete
+---------------------------------------------------------------------------
+
+$wpdb->delete(
+	$wpdb->prefix.'table',
+	array( 'id' => $id )
+);
+
+
+---------------------------------------------------------------------------
+
+
+
+
+
+
+---------------------------------------------------------------------------
+	Execute Any Sql
+---------------------------------------------------------------------------
+
+query( $sql );
+query_sql( $sql );
+
+
+
+---------------------------------------------------------------------------
+	Create Table if not exist
+---------------------------------------------------------------------------
+
+function maybe_create_table( $table_name, $create_ddl ){
+
+    global $wpdb;
+ 
+    $query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) );
+ 
+    if ( $wpdb->get_var( $query ) == $table_name ) {
+        return true;
+    }
+ 
+    // Didn't find it try to create it..
+    $wpdb->query( $create_ddl );
+ 
+    // We cannot directly tell that whether this succeeded!
+    if ( $wpdb->get_var( $query ) == $table_name ) {
+        return true;
+    }
+    return false;
+}
+
+

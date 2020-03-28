@@ -1,0 +1,26 @@
+centerAllPivots ( C )
+e.pivot2center();
+
+pivot2Obj (Alt + C)
+e.pivot2Obj();
+
+toObject (alt + Q)
+manipMoveContext -e -mode 0 Move;
+
+toWorld (alt + W)
+manipMoveContext -e -mode 2 Move;
+
+toCustom (alt + E)
+manipMoveContext -e -mode 6 Move;
+
+toComponent (alt + R)
+manipMoveContext -e -mode 9 Move;
+
+
+
+setToComp (Alt + D)
+manipMoveOrient 4;
+
+setToObj (Alt + F)
+e.obj2Obj()
+

@@ -1,0 +1,70 @@
+function getContents($str, $startDelimiter, $endDelimiter, $type = "") {
+
+	$contents = array();
+	$startDelimiterLength = strlen($startDelimiter);
+	$endDelimiterLength = strlen($endDelimiter);
+	$startFrom = $contentStart = $contentEnd = 0;
+
+	if( $type == "" ){
+
+		while (false !== ($contentStart = strpos($str, $startDelimiter, $startFrom))) {
+			$contentStart += $startDelimiterLength;
+			$contentEnd = strpos($str, $endDelimiter, $contentStart);
+			if (false === $contentEnd) {
+				break;
+			}
+			$contents[] = substr($str, $contentStart, $contentEnd - $contentStart);
+			$startFrom = $contentEnd + $endDelimiterLength;
+		}
+
+	}else if( $type == "reverse" ){
+
+		$startStr = $startDelimiter;
+		$endStr = $endDelimiter;
+		$startLen = strlen($startStr);
+
+
+		$endPos = strpos( $str, $endStr );
+		if( $endPos !== FALSE){
+
+			$firstHaf = substr( $str, 0, $endPos );
+			$startPos = strrpos( $firstHaf, $startStr );
+
+			if( $startPos !== FALSE){
+
+				$res = substr( $firstHaf, $startPos + $startLen );
+				return $res; 				 
+
+			}else{
+				return false;
+			}		
+
+
+		}else{
+			return false;
+		}
+	}
+
+	if( sizeof($contents) == 1 ){
+		return $contents[0];
+	}else{
+		return $contents;	
+	}
+	
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$test = "hakuna matata edwin1 edwin2 edwin3 maurcio perez vega edwin uu perez";
+
+
+
+
+getContents($test, 'edw', 'rez');		 // [ "in1 edwin2 edwin3 maurcio pe", "in uu pe" ]
+getContents($test, 'edw', 'rez', 'closest');	 // "in3 maurcio pe"
+
+
+
+

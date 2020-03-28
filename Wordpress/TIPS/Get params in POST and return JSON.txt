@@ -1,0 +1,19 @@
+function get_post_params() {
+	
+	global $post;
+	$name = $post->post_name;
+
+	if( $name == "home" ){
+		if( isset( $_POST['editordata'] ) ){
+		    pr( $_POST['editordata'] );
+		}
+
+		if( isset( $_GET['name'] ) ){
+		    $data = $_GET['name'];		        
+		}
+	}
+
+	echo json_encode( array( "status" => "Done!" ) );
+	exit();
+}
+add_action( 'template_redirect', 'members_actions_post_data',9999 );

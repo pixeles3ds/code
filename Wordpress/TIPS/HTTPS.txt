@@ -1,0 +1,62 @@
+1. Force SSL for administrator and sign in pages
+2. Secure all non-administrator pages with HTTPS
+3. Fix .htaccess to process website assets such as CSS and JavaScript under HTTPS
+4. Clean up any loose ends such as caching
+
+
+------------------------------------------------------------------------------------------------
+1. wp_config.php
+------------------------------------------------------------------------------------------------
+
+Simply add the following code above the “That’s all, stop editing!” line in your wp-config.php file:
+
+	define('FORCE_SSL_ADMIN', true);
+
+
+------------------------------------------------------------------------------------------------
+2. En dashboard
+------------------------------------------------------------------------------------------------
+
+Ir a:
+	dashboard > settings > general
+
+Poner en:
+
+	WordPress Address (URL) : https://dominio
+	Site Address (URL)	: https://dominio
+
+
+------------------------------------------------------------------------------------------------
+3. .httacces
+------------------------------------------------------------------------------------------------
+
+AÑADIR ESTE CODIGO EN LAS PRIMERAS LINEAS :
+
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+EJEMPLO: 
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+
+***  	RewriteEngine On
+*** 	RewriteCond %{HTTPS} off
+*** 	RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteEngine On
+RewriteBase /eva/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /eva/index.php [L]
+</IfModule>
+
+# END WordPress
+
+------------------------------------------------------------------------------------------------
+4. 
+------------------------------------------------------------------------------------------------

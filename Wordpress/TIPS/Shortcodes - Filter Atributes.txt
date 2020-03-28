@@ -1,0 +1,9 @@
+function filterProductShortcode( $out, $pairs, $atts ){	
+	
+    if( isset( $atts['custom_price'] ) ){
+        $out['custom_price'] = "$".str_replace('- ', '- $', $out['custom_price'] );        
+    }
+
+    return $out;
+}
+add_filter( "shortcode_atts_nameofshortcode", "filterProductShortcode", 25, 3 );

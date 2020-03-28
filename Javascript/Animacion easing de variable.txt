@@ -1,0 +1,20 @@
+
+
+
+// Posicion actual 
+var camX = 0;
+var camY = 0;
+
+
+// Posicion Destino, animacion easing
+var tweenX = 0;
+var tweenY = 0;	
+
+
+
+// La funcion de ejeturase en tiempo real para que funcione
+function realtimeRender(){
+
+	tweenX += ( camX - tweenX) * 0.05;
+	tweenY += ( camY - tweenY) * 0.05;
+}

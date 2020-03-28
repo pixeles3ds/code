@@ -1,0 +1,7 @@
+BEST COMPRESION WORKFLOW
+
+1. Open a TTF in (FONT EDITOR VI)
+2. Export to OTF from here
+3. convert OTF to fonts in transfonter.org
+
+Super Compressed Fonts

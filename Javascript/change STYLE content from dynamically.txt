@@ -1,0 +1,4 @@
+function setMasonryMargin(){
+	var m = document.getElementById('idStyle');	
+	m.innerHTML=" body{opacity:0.2;} ";
+}

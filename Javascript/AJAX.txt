@@ -1,0 +1,55 @@
+----------------------------------------------------------------
+			GENERAL FUNCTION
+----------------------------------------------------------------
+function initAjax(){
+	console.log("Ajax running");
+}
+
+function ajax( dataObj, callback ){
+
+	initAjax();
+	
+	$.ajax({
+		cache: false,
+	  	method: "POST",	  	
+	  	url: "page.php",
+	  	data: dataObj,
+	  	dataType: "html",
+		success: function(res){
+
+			try {
+				ajaxRes = JSON.parse(res);
+				console.log( ajaxRes );
+			} catch(err) {
+			  	console.log(err.message);
+			}
+			
+
+			callback();
+			
+		},
+		error: function(res){
+			console.log(res);
+		}
+	});
+	
+
+}
+
+
+
+
+
+----------------------------------------------------------------
+			How Use It
+----------------------------------------------------------------
+
+var data = {
+	"action":"addCategory",
+	"category": name
+}
+
+
+ajax( data, function(){ 
+	alert();
+} );

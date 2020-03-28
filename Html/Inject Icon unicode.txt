@@ -1,0 +1,14 @@
+APLICAR LA FUENTE AL ELEMENTO
+
+HTML = (DECIMAL CODE)
+
+	<span class="fa">&#61453</span>
+
+
+
+
+JAVASCRIPT = (HEX CODE) 
+
+	nota = la u va por separado, u + codigo hex
+
+	var icon = '\uf2b5'

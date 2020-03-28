@@ -1,0 +1,12 @@
+<?php
+
+ $currentUrl = "//".$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+?>
+
+
+
+
+<li>
+	<?php echo wp_loginout( $currentUrl ); ?>
+</li>

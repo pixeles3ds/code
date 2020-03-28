@@ -1,0 +1,11 @@
+Cursor on selcted lines
+
+	Ctrl + Shift + L
+
+Cursor on next ocurrence
+
+	Ctrl + D
+
+Undo cursor ocurrence
+
+	Ctrl + U

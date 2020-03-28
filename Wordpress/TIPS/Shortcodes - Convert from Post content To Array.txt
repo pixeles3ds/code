@@ -1,0 +1,120 @@
+
+function buildTree(DOMNode $node = NULL, &$tree) {
+	
+	if( $node->hasChildNodes() ){
+    
+	    foreach ($node->childNodes as $cnode) {	    	
+
+			$tree["name"] = $node->nodeName;
+
+	        switch($cnode->nodeType) {
+	            case XML_ELEMENT_NODE:                
+	                break;
+	            case XML_TEXT_NODE:                                
+	                $tree["content"] = $cnode->nodeValue;
+	                break;
+	        }
+
+	        $attributes = array();
+			if ($node->hasAttributes()) {
+				foreach ($node->attributes as $attr) {
+					$attributes[ $attr->nodeName ] = $attr->nodeValue;
+				}
+				
+			}
+			$tree[ "attr" ] = $attributes;
+
+	        if( $cnode->nodeType == 1 ){
+	            buildTree($cnode, $tree["content"][ count( $tree["content"] ) ]);      	        
+	        }
+
+	    }
+
+	}else{
+		if( $node->nodeType == 1 ){
+			$tree["name"] = $node->nodeName;
+ 			$attributes = array();
+			if ($node->hasAttributes()) {
+				foreach ($node->attributes as $attr) {
+					$attributes[ $attr->nodeName ] = $attr->nodeValue;
+				}
+				
+			}
+			$tree[ "attr" ] = $attributes;
+		}
+	}
+
+}
+
+function shortcodes2Array( $source ){
+	
+	$source = str_replace('[', '<', $source );
+	$source = str_replace(']', '>', $source );
+
+	$doc = new DOMDocument();
+	libxml_use_internal_errors(true);
+	$doc->preserveWhiteSpace = TRUE;
+	$doc->loadHTML( $source );
+	libxml_clear_errors();
+
+	$tree = array();
+	buildTree($doc, $tree);
+
+	return $tree["content"][0]["content"][0]["content"];
+
+}
+
+function getContents($str, $startDelimiter, $endDelimiter) {
+	$contents = array();
+	$startDelimiterLength = strlen($startDelimiter);
+	$endDelimiterLength = strlen($endDelimiter);
+	$startFrom = $contentStart = $contentEnd = 0;
+	while (false !== ($contentStart = strpos($str, $startDelimiter, $startFrom))) {
+		$contentStart += $startDelimiterLength;
+		$contentEnd = strpos($str, $endDelimiter, $contentStart);
+		if (false === $contentEnd) {
+			break;
+		}
+		$contents[] = substr($str, $contentStart, $contentEnd - $contentStart);
+		$startFrom = $contentEnd + $endDelimiterLength;
+	}
+	return $contents;
+}
+
+
+function getShorcodesMainData(){
+	
+	global $post;	
+	//$id = $post->ID;
+	$id = 279;	
+
+	$post = get_post($id); 
+	$content = $post->post_content;
+
+		
+	$listPrices = getContents($content, 'el_class="tableprices"]', '[/vc_column]');
+
+	//Cleaning extra tags
+	foreach ( $listPrices as $key => $value ) {
+		$productSTR = getContents( $listPrices[$key], '[/vc_column_text]', '[button')[0];
+		$productSTR = str_replace(']', '/]', $productSTR );
+		$listPrices[$key] = $productSTR;		
+	}
+	
+	foreach ( $listPrices as $key => $value ) {
+		
+		$result = shortcodes2Array( $value );
+		$listPrices[$key] = $result; 
+	}
+
+	return $listPrices;
+}
+
+
+function convertShorcodes() {
+	
+	pr( getShorcodesMainData() );
+	exit;
+
+}
+add_action( 'wp_enqueue_scripts', 'convertShorcodes');

@@ -1,0 +1,17 @@
+
+get_user_logged_in()				tener el nombre de usuario de cuenta actual
+
+
+is_user_logged_in()				Si el usuario esta logueado
+
+$menus = wp_get_nav_menus();
+$menu_locations = get_nav_menu_locations();
+
+
+get_home_url() 					retorna la URL con la ubicacion raiz						
+
+global $post;
+$post->post_name;				retorna el slug de la web actual si es una pagina de wordpress y no de buddypres					=	membership-levels
+
+global $wp_filter;				averiguar que funciones estan llamando un filtro
+pr($wp_filter['action_name']);

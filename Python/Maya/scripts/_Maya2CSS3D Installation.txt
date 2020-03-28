@@ -1,0 +1,10 @@
+
+
+---------------------------------
+Run this code in python tab
+---------------------------------
+
+import Maya2CSS3D as m2css
+
+reload(m2css)
+m2css.createProject( "C:/xampp/htdocs/CSS3DEngine3", html=1, js=1 )

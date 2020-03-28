@@ -1,0 +1,5 @@
+Documents\Maya\20xx
+Open Maya.env in a text editor and add the following line:
+
+
+	MAYA_ENABLE_LEGACY_VIEWPORT=1

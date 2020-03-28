@@ -1,0 +1,1 @@
+Poner la pagina json.php en la raiz del theme y vincularlo a traves de pages

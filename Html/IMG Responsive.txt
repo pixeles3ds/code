@@ -1,0 +1,13 @@
+<img srcset="
+    /img/footer/logo_white.png?v=2.0 300w,
+    /img/footer/logo_white2x.png?v=2.0 600w,
+    /img/footer/logo_white_small.png?v=2.0 150w
+">
+Now the browser knows it can select from three images that are 150, 300 and 600 pixels wide (I guessed the dimensions, your actual widths might be different).
+
+Second, you tell the browser how large the image will be displayed in the webpage, this can be achieved with sizes:
+
+<img
+    sizes="(max-width: 400px) 150px, 300px"
+    srcset="..."
+>

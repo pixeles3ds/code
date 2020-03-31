@@ -1,0 +1,19 @@
+
+*  = Pasa listas y tuplas como parametro
+** = Pasa diccionarios como parametro
+
+
+
+argsList = ["a","b","c"]
+argsDict = {"a":1,"b":2,"c":3}
+
+
+function( *argsList )
+function( **argsDict )
+
+-----------------------------------------------------------
+Debe dejarse a lo ultimo en caso de haber mas parametros
+-----------------------------------------------------------
+
+function( "a" , *argsList  )
+function( a = 0 , **argsDict )

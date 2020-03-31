@@ -1,0 +1,9 @@
+    
+Crear archivo userSetup.py en:
+    C:\Users\Edwin\Documents\maya\scripts
+    
+Poner en userSetup.py:
+    import edTools.edTools as e
+
+
+Ya el escript queda cargado con el nombre de e

@@ -1,0 +1,4 @@
+usar
+%s
+
+a = "%s.tx" % "asdds"

@@ -1,0 +1,21 @@
+'''
+
+How install:
+    
+1. Guardar [edTools] carpera entera en:
+
+    C:\Users\Edwin\Documents\maya\20xx\prefs\scripts
+
+2. Ejecutar con:
+
+
+import edTools.edTools as et
+
+reload(et) # Reloading module
+e = et.ui() # Instancing edTools
+
+e.showUI() # Running UI
+
+
+
+'''

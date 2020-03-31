@@ -1,0 +1,6 @@
+
+PASAR METODO COMO ARGUMENTO Y CON PARAMETRO
+
+action( command = "func2('attr')" )
+
+action( command = lambda *args : func2('attr') )

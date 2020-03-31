@@ -67,8 +67,7 @@ function create_database($namefolder, $justDB = 0){
 	
 }
 
-function smartCopy($source, $dest, $options=array('folderPermission'=>0755,'filePermission'=>0755))
-{
+function smartCopy($source, $dest, $options=array('folderPermission'=>0755,'filePermission'=>0755)){
     $result=false;
 
     if (is_file($source)) {
@@ -129,14 +128,13 @@ function smartCopy($source, $dest, $options=array('folderPermission'=>0755,'file
 
 function changeData( $dbname, $foldername ){
 
-	$oldMessage = "define('DB_NAME', 'dbname');";
-	$deletedFormat = "define('DB_NAME', '".$dbname."');";
-
 	//read the entire string
 	$str=file_get_contents( $foldername."/".'wp-config.php');
 
 	//replace something in the file string - this is a VERY simple example
-	$str=str_replace("$oldMessage", "$deletedFormat",$str);
+	$str=str_replace("database_name_here", "$dbname",$str);
+	$str=str_replace("username_here", "root",$str);
+	$str=str_replace("password_here", "",$str);
 
 	//write the entire string
 	file_put_contents( $foldername."/".'wp-config.php', $str);
@@ -173,10 +171,18 @@ if( isset($_GET["name"]) ){
 	}	
 	$d->close();
 	
+	echo "Copiado Wordpress...<br>";
+
+	// Copiando Wordpress folder	
+	smartCopy('w52/', $_GET["name"] );
+
+	//Copiado Config file...
+	copy( $_GET["name"]."/wp-config-sample.php", $_GET["name"]."/wp-config.php" );
 	
-	echo "Copiado Wordpress...";
-	smartCopy('w498/', $_GET["name"] );
+	//Creando DB...
 	$dbname = create_database( $_GET["name"] );
+	
+	//Actualizando Datos Conexion...
 	changeData( $dbname , $_GET["name"] );
 	
 

@@ -3,9 +3,34 @@ import errno
 import os
 
 
-baseDest = "D:/_Diario/codigo/"
+'''
+To ignore files or folders:
+	
+	'file.pyc' 	= Exacly the file
+	'folder'	= Exacly the folder
+	'*.pyc'		= Files with specific extension 
+	'folder*'	= Folder with a string
 
-def copy(src, dest):
+	copy(src,dst, ignoreFiles = [ "*.pyc", "file.py", "Maya2CSS3D", "*lder" )
+
+'''
+
+gitBackup = "D:/_Diario/codigo/Python/"
+
+def copy(src, dest, ignoreFiles = False ):
+
+	def createFolder( name ):
+		if not os.path.exists( name ):
+			os.makedirs( name )
+
+	def isFolder(path):
+		if os.path.isdir(path): 
+			return True
+
+	def fixFolderPath(path):
+		if( path[-1:] == "/" ): return path[:-1]
+		else: return path
+
 
 	# Delete '/' from folders path string
 	src = fixFolderPath(src)
@@ -17,11 +42,15 @@ def copy(src, dest):
 		try:
 			if os.path.exists(dest):
 				shutil.rmtree(dest)
-			shutil.copytree(src, dest)		
+			if(ignoreFiles):
+				shutil.copytree(src, dest, ignore = shutil.ignore_patterns( *ignoreFiles ) )				
+			else:
+				shutil.copytree(src, dest )
 		except OSError as e:
 			# If the error was caused because the source wasn't a directory
 			if e.errno == errno.ENOTDIR:
 				shutil.copy(src, dest)
+				print(src)
 			else:
 				print('Directory not copied. Error: %s' % e)
 		print( dest )
@@ -31,22 +60,6 @@ def copy(src, dest):
 		print( dest +"/"+ os.path.basename( src ) )
 		
 
-def copyList(lista,src,dst):
-	for obj in lista:
-		copy( src + obj, dst )		
-
-
-def createFolder( name ):
-	if not os.path.exists( name ):
-		os.makedirs( name )
-
-def isFolder(path):
-	if os.path.isdir(path): 
-		return True
-
-def fixFolderPath(path):
-	if( path[-1:] == "/" ): return path[:-1]
-	else: return path
 
 def p(msg):
 	print( "\n"+"-"*30+"\n"+msg+"\n"+"-"*30 )
@@ -57,27 +70,41 @@ def p(msg):
 # Copying this file itself
 #---------------------------------------------------------
 
-src = "C:/Users/Edwin/Desktop/backupData.py"
-dst = baseDest + "Python/Python Scripts/"
-
 p("This File Itself")
-copy(src,dst)
+copy(
+	"C:/Users/Edwin/Desktop/backupData.py",
+	gitBackup + "Python Scripts/"
+	)
+
+#---------------------------------------------------------
+# Copying PYTHON scripts
+#---------------------------------------------------------
+
+p("Python Scripts")
+copy(
+	"C:/Python36/Scripts/edScripts",
+	gitBackup + "Python Scripts/"
+	)
+
+#---------------------------------------------------------
+# Copying PYTHON scripts
+#---------------------------------------------------------
+
+p("Wordpress Installator")
+copy( "C:/xampp/htdocs/index.php","D:/_Diario/Codigo/Wordpress/Fast WP Copier on xampp/")
+copy( "C:/xampp/htdocs/wp_creator.php","D:/_Diario/Codigo/Wordpress/Fast WP Copier on xampp/")
 
 
 #---------------------------------------------------------
 # Copying Maya Files
 #---------------------------------------------------------
 
-src = "C:/Users/Edwin/Documents/maya/2016/scripts/"
-dst = baseDest + "Python/Maya/scripts/"
-lista = [
-	"edTools.py",
-	"Maya2CSS3D.py",
-	"Maya2CSS3D"
-	]
-
 p("Maya")
-copyList(lista,src,dst)
+copy(
+	"C:/Users/Edwin/Documents/maya/2020/prefs/scripts/edTools/",
+	gitBackup + "Maya/scripts/",
+	ignoreFiles = [ "*.pyc" ] 
+	)
 
 
 input()

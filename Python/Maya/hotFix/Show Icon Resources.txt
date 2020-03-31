@@ -1,0 +1,18 @@
+if (`window -exists AllIconsWin`) deleteUI AllIconsWin;
+if (`windowPref -exists AllIconsWin`) windowPref -remove AllIconsWin;
+string $window = `window -title "All icons" -rtf 1 -widthHeight 840 550 AllIconsWin`;
+
+columnLayout -adj 1;
+$labels =  `textFieldGrp -label "Resources: " -text  "click icons to get icon names"`;
+$scrollLayout = `scrollLayout -verticalScrollBarThickness 16 -h 500`;
+rowColumnLayout -numberOfColumns 25;
+
+string $icons[] = `resourceManager -nameFilter "*"`;
+for($icon in $icons){
+    nodeIconButton -w 32 -h 32 -style "iconOnly" -command ("displayname $labels \""+$icon+"\"") -image1 $icon;
+}
+showWindow $window;
+
+proc displayname(string $textfield,string $string){
+    textFieldGrp -edit -text $string $textfield;
+}

@@ -1,0 +1,10 @@
+exec app.setElement( "css", "ul.mini-navigation-menu li" )
+exec app.setElement( "name", "q" )
+
+exec print(app.getElement())
+exec print(app.getElementCode())
+
+exec app.text( text = "zelda" )
+exec app.enter()
+
+for b in app.getElement(): print(b)

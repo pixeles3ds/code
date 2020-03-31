@@ -1,0 +1,11 @@
+
+
+app.getHtmlCode(url)
+
+
+printl( app.getLinks("a","href") )		
+printl( app.getLinks("script","src") )
+printl( app.getLinks("link","href") )
+printl( app.getLinks("img","src") )
+
+app.saveResources()

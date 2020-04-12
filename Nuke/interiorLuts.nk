@@ -1,0 +1,2376 @@
+#! C:/Program Files/Nuke11.1v1/nuke-11.1.1.dll -nx
+#write_info Write1 file:"C:/Users/Edwin/Desktop/pendiente/testing/result2.exr" format:"1440 810 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 100" fps:"0" colorspace:"default (linear)" datatype:"32 bit float" transfer:"unknown" views:"main" colorManagement:"Nuke"
+version 11.1 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="2544" h="1361" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1881" stretch="1"/>
+            <splitter orientation="2">
+                <split size="771"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="542"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Nuke/interiorLuts.nk
+ frame 89
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/pendiente/testing/asde.exr
+ format "1440 810 0 0 1440 810 1 "
+ origset true
+ colorspace linear
+ name Read2
+ xpos -692
+ ypos -262
+}
+set N9ec70a80 [stack 0]
+Dot {
+ name Dot4
+ xpos -313
+ ypos -222
+}
+Colorspace {
+ colorspace_out sRGB
+ name Colorspace1
+ xpos -347
+ ypos -183
+}
+Dot {
+ name Dot9
+ xpos -313
+ ypos -96
+}
+set N9ec70000 [stack 0]
+Dot {
+ name Dot2
+ xpos 416
+ ypos -96
+}
+set N9ec71c00 [stack 0]
+ColorLookup {
+ lut {master {curve C 0 s0 v1.704883099 x0.0978891626 0.09530824423 s1.220000029 x1.002973914 0.7982586622}
+   red {}
+   green {}
+   blue {}
+   alpha {}}
+ name ColorLookup2
+ xpos 210
+ ypos 121
+}
+push $N9ec71c00
+RolloffContrast {
+ contrast 1.28
+ center 0.215
+ soft_clip 1
+ slope_mag_low1 0.1999999881
+ slope_mag_high2 0.1999999881
+ name RolloffContrast2
+ xpos 292
+ ypos 120
+}
+push $N9ec71c00
+RolloffContrast {
+ contrast 1.55
+ center 0.205
+ soft_clip 1
+ slope_mag_low1 0.1999999881
+ slope_mag_high2 0.1999999881
+ name RolloffContrast1
+ xpos 382
+ ypos 119
+}
+push $N9ec71c00
+RolloffContrast {
+ contrast 2
+ center 0.1
+ soft_clip 1.2
+ slope_mag_low1 0.07999998331
+ slope_mag_high2 0.07999998331
+ name RolloffContrast4
+ xpos 463
+ ypos 124
+}
+push $N9ec71c00
+ColorCorrect {
+ contrast 8
+ gamma 6
+ gain 0.3
+ midtones.gamma 1.02
+ highlights.contrast 1.02
+ highlights.gamma 1.4
+ highlights.gain 0.27
+ name Contrast2
+ xpos 547
+ ypos 125
+}
+push $N9ec70000
+Dot {
+ name Dot1
+ xpos -313
+ ypos -39
+}
+set N9ecc2e00 [stack 0]
+Dot {
+ name Dot3
+ xpos -484
+ ypos -39
+}
+set N9ecc2a80 [stack 0]
+Dot {
+ name Dot7
+ xpos -606
+ ypos -39
+}
+set N9ecc2700 [stack 0]
+Dot {
+ name Dot6
+ xpos -726
+ ypos -39
+}
+OCIOCDLTransform {
+ slope 0.9
+ power 1.01
+ working_space sRGB
+ name OCIOCDLTransform3
+ xpos -760
+ ypos 111
+}
+ColorCorrect {
+ contrast 2.42
+ gamma 2
+ gain 0.48
+ name ColorCorrect7
+ xpos -760
+ ypos 137
+}
+RolloffContrast {
+ contrast 1.5
+ center 0.155
+ soft_clip 1
+ slope_mag_low1 0.1999999881
+ slope_mag_high2 0.1999999881
+ name RolloffContrast9
+ xpos -760
+ ypos 163
+}
+ColorLookup {
+ lut {master {curve C 0 s0.75 x0.4386214018 0.4616915584 s1.049999952 u0.850109458 x1 1 s1.450000048}
+   red {}
+   green {}
+   blue {}
+   alpha {}}
+ name ColorLookup1
+ xpos -760
+ ypos 189
+}
+push $N9ecc2700
+OCIOCDLTransform {
+ slope 0.9
+ power 1.01
+ working_space sRGB
+ name OCIOCDLTransform1
+ xpos -640
+ ypos 115
+}
+ColorCorrect {
+ contrast 2.42
+ gamma 2
+ gain 0.48
+ name ColorCorrect4
+ xpos -640
+ ypos 141
+}
+RolloffContrast {
+ contrast 1.5
+ center 0.155
+ soft_clip 1
+ slope_mag_low1 0.1999999881
+ slope_mag_high2 0.1999999881
+ name RolloffContrast6
+ xpos -640
+ ypos 167
+}
+push $N9ecc2a80
+ColorCorrect {
+ contrast 8
+ gamma 6
+ gain 0.3
+ midtones.gamma 1.66
+ highlights.contrast 1.02
+ highlights.gamma 1.4
+ highlights.gain 0.27
+ name Contrast3
+ xpos -518
+ ypos 116
+}
+RolloffContrast {
+ contrast 1.6
+ center 0.425
+ soft_clip 1
+ slope_mag_low1 0.1999999881
+ slope_mag_high2 0.1999999881
+ name RolloffContrast8
+ xpos -518
+ ypos 142
+}
+push $N9ecc2e00
+RolloffContrast {
+ contrast 2
+ center 0.3
+ soft_clip 0.615
+ slope_mag_low1 0.4309999943
+ slope_mag_high2 0.4309999943
+ name RolloffContrast3
+ xpos -347
+ ypos 30
+}
+ColorCorrect {
+ contrast 0.54
+ gain 0.94
+ name ColorCorrect5
+ xpos -347
+ ypos 56
+}
+RolloffContrast {
+ contrast 2.25
+ center 0.12
+ soft_clip 0.51
+ slope_mag_low1 0.4940000176
+ slope_mag_high2 0.4940000176
+ name RolloffContrast5
+ xpos -347
+ ypos 82
+}
+set Nd23fd880 [stack 0]
+ColorCorrect {
+ contrast 1.02
+ gamma 1.06
+ gain 0.96
+ name ColorCorrect6
+ xpos -416
+ ypos 143
+}
+ColorCorrect {
+ contrast 2.46
+ gamma 2.12
+ gain 0.41
+ offset 0.0002
+ name ColorCorrect3
+ xpos -416
+ ypos 169
+}
+push $Nd23fd880
+ColorCorrect {
+ contrast 1.06
+ gamma 1.03
+ gain 1.02
+ midtones.contrast 1.02
+ name ColorCorrect1
+ xpos -305
+ ypos 145
+}
+push $N9ecc2e00
+Dot {
+ name Dot5
+ xpos -142
+ ypos -39
+}
+ColorCorrect {
+ contrast 0.54
+ gamma 1.42
+ midtones.contrast 1.02
+ name ColorCorrect2
+ xpos -176
+ ypos 85
+}
+RolloffContrast {
+ contrast 2.05
+ center 0.315
+ soft_clip 0.72
+ slope_mag_low1 0.3679999709
+ slope_mag_high2 0.3679999709
+ name RolloffContrast7
+ xpos -176
+ ypos 111
+}
+RolloffContrast {
+ contrast 2.05
+ center 0.315
+ soft_clip 0.52
+ slope_mag_low1 0.4880000055
+ slope_mag_high2 0.4880000055
+ name RolloffContrast10
+ xpos -176
+ ypos 137
+}
+EXPTool {
+ red -0.07
+ green -0.07
+ blue -0.07
+ name Exposure1
+ xpos -176
+ ypos 163
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/pendiente/testing/asd.exr
+ format "1424 713 0 0 1424 713 1 "
+ origset true
+ name Read1
+ xpos -1102
+ ypos -377
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/pendiente/testing/test3.exr
+ format "2880 1620 0 0 2880 1620 1 "
+ origset true
+ colorspace linear
+ name Read5
+ xpos -1767
+ ypos -6
+}
+push $N9ec70a80
+Dot {
+ name Dot8
+ xpos -1068
+ ypos -96
+}
+Dot {
+ name Dot10
+ xpos -1068
+ ypos -39
+}
+set Nd2462e00 [stack 0]
+Group {
+ name Filmic_Tonemap
+ tile_color 0xffbf00ff
+ xpos -1338
+ ypos 214
+ addUserKnob {20 filmic_tonemapping_operator_Tab l "Filmic Tonemapping Operator"}
+ addUserKnob {20 tone_parameters_Group l "Tone Parameters" n 1}
+ addUserKnob {7 A_Floating_Point_Slider l "Shoulder Strength"}
+ A_Floating_Point_Slider 0.22
+ addUserKnob {7 B_Floating_Point_Slider l "Linear Strength"}
+ B_Floating_Point_Slider 0.3
+ addUserKnob {7 C_Floating_Point_Slider l "Linear Angle"}
+ C_Floating_Point_Slider 0.1
+ addUserKnob {7 D_Floating_Point_Slider l "Toe Strength"}
+ D_Floating_Point_Slider 0.2
+ addUserKnob {7 E_Floating_Point_Slider l "Toe Numerator"}
+ E_Floating_Point_Slider 0.01
+ addUserKnob {7 F_Floating_Point_Slider l "Toe Denominator"}
+ F_Floating_Point_Slider 0.3
+ addUserKnob {20 tone_parameters_endGroup l endGroup n -1}
+ addUserKnob {20 miscellaneous_parameters_Group l "Miscellaneous Parameters" n 1}
+ addUserKnob {7 mix_Floating_Point_Slider l Mix t "Dissolve between the original image at 0 and the full effect at 1."}
+ mix_Floating_Point_Slider 1
+ addUserKnob {7 exposure_bias_Floating_Point_Slider l "Exposure Bias"}
+ exposure_bias_Floating_Point_Slider 2
+ addUserKnob {6 clamp_output_Check_Box l "Clamp Output" t "Output values are clamped within \[0, 1] domain." +STARTLINE}
+ clamp_output_Check_Box true
+ addUserKnob {20 miscellaneous_parameters_endGroup l endGroup n -1}
+ addUserKnob {20 about_Tab l About}
+ addUserKnob {26 description_Text l "" +STARTLINE T "Filming Tonemapping Operator v0.1.0\n\ncolour-science.org - March 17, 2015\n\nThis Gizmo / Group implements the Filming Tonemapping Operator from Uncharted 2 by John Habble which is based on Haarm-Peter Duiker curve.\n\n\[1] Habble, J. (2010). Filmic Tonemapping Operators. Retrieved March 15, 2015, from http://filmicgames.com/archives/75\n\[2] Habble, J. (2010). Uncharted 2: HDR Lighting. Retrieved March 15, 2015, from http://www.slideshare.net/ozlael/hable-john-uncharted2-hdr-lighting"}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 13
+  ypos -125
+ }
+set Nd2462a80 [stack 0]
+ Dot {
+  name Dot1
+  xpos 123
+  ypos -122
+ }
+ Dot {
+  name Dot2
+  xpos 123
+  ypos 22
+ }
+push $Nd2462a80
+ Multiply {
+  value {{parent.filmic_tonemapping_operator_Expression.exposure_bias_Floating_Point_Slider}}
+  name exposure_bias_Multiply
+  xpos 13
+  ypos -101
+ }
+ Expression {
+  temp_name0 toe_angle
+  temp_expr0 E_Floating_Point_Slider/F_Floating_Point_Slider
+  expr0 ((r*(A_Floating_Point_Slider*r+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(r*(A_Floating_Point_Slider*r+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
+  expr1 ((g*(A_Floating_Point_Slider*g+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(g*(A_Floating_Point_Slider*g+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
+  expr2 ((b*(A_Floating_Point_Slider*b+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(b*(A_Floating_Point_Slider*b+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-toe_angle
+  expr3 a
+  name filmic_tonemapping_operator_Expression
+  xpos 13
+  ypos -69
+  addUserKnob {20 User}
+  addUserKnob {7 exposure_bias_Floating_Point_Slider l "Exposure Bias"}
+  exposure_bias_Floating_Point_Slider {{parent.exposure_bias_Floating_Point_Slider}}
+  addUserKnob {7 A_Floating_Point_Slider l "Shoulder Strength"}
+  A_Floating_Point_Slider {{parent.A_Floating_Point_Slider}}
+  addUserKnob {7 B_Floating_Point_Slider l "Linear Strength"}
+  B_Floating_Point_Slider {{parent.B_Floating_Point_Slider}}
+  addUserKnob {7 C_Floating_Point_Slider l "Linear Angle"}
+  C_Floating_Point_Slider {{parent.C_Floating_Point_Slider}}
+  addUserKnob {7 D_Floating_Point_Slider l "Toe Strength"}
+  D_Floating_Point_Slider {{parent.D_Floating_Point_Slider}}
+  addUserKnob {7 E_Floating_Point_Slider l "Toe Numerator"}
+  E_Floating_Point_Slider {{parent.E_Floating_Point_Slider}}
+  addUserKnob {7 F_Floating_Point_Slider l "Toe Denominator"}
+  F_Floating_Point_Slider {{parent.F_Floating_Point_Slider}}
+  addUserKnob {7 linear_whitepoint_Floating_Point_Slider l "Linear Whitepoint"}
+  linear_whitepoint_Floating_Point_Slider 11.2
+  addUserKnob {7 linear_white_Floating_Point_Slider l "Linear White"}
+  linear_white_Floating_Point_Slider {{((linear_whitepoint_Floating_Point_Slider*(A_Floating_Point_Slider*linear_whitepoint_Floating_Point_Slider+C_Floating_Point_Slider*B_Floating_Point_Slider)+D_Floating_Point_Slider*E_Floating_Point_Slider)/(linear_whitepoint_Floating_Point_Slider*(A_Floating_Point_Slider*linear_whitepoint_Floating_Point_Slider+B_Floating_Point_Slider)+D_Floating_Point_Slider*F_Floating_Point_Slider))-E_Floating_Point_Slider/F_Floating_Point_Slider}}
+ }
+ Multiply {
+  value {{1/parent.filmic_tonemapping_operator_Expression.linear_white_Floating_Point_Slider}}
+  name linear_white_Multiply
+  xpos 13
+  ypos -45
+ }
+set Nd2493500 [stack 0]
+ Clamp {
+  name Clamp
+  xpos -97
+  ypos -13
+ }
+push $Nd2493500
+ Switch {
+  inputs 2
+  which {{parent.clamp_output_Check_Box}}
+  name clamp_Switch
+  xpos 13
+  ypos -9
+ }
+ Dissolve {
+  inputs 2
+  which {{1-parent.mix_Floating_Point_Slider}}
+  name Dissolve
+  xpos 13
+  ypos 15
+ }
+ Output {
+  name Output
+  xpos 13
+  ypos 43
+ }
+end_group
+push $Nd2462e00
+Group {
+ name TonemapFilmic6
+ help "Implementing John Hable's Filmic Tonemapping algorithm as a Nuke gizmo.\n\nhttp://filmicgames.com/archives/75\nhttp://www.slideshare.net/ozlael/hable-john-uncharted2-hdr-lighting\n\n## Filmic Tonemapping\nA = Shoulder Strength\nB = Linear Strength\nC = Linear Angle\nD = Toe Strength\nE = Toe Numerator\nF = Toe Denominator\n\tNote: E/F = Toe Angle\nLinearWhite = Linear White Point Value\n\nF(x) = ((x*(A*x+C*B) + D*E) / (x*(A*x+B) + D*F)) - E/F\nFinalColor = F(LinearColor)/F(LinearWhite)\n\nA = 0.22\nB = 0.30\nC = 0.10\nD = 0.20\nE = 0.01\nF = 0.30\nLinearWhite = 11.2\nThese numbers are assuming linear source data."
+ tile_color 0xa3ffff
+ xpos -1244
+ ypos 208
+ addUserKnob {20 Tonamap l Tonemap}
+ addUserKnob {26 ""}
+ addUserKnob {7 exposure t "Adjust the exposure before the tonemap in stops." R -4 4}
+ addUserKnob {41 shStr l "Shoulder Strength" T Expression_Filmic_Tonemap.shStr}
+ addUserKnob {41 linStr l "Linear Strength" T Expression_Filmic_Tonemap.linStr}
+ addUserKnob {41 linAngle l "Linear Angle" T Expression_Filmic_Tonemap.linAngle}
+ addUserKnob {41 toeStr l "Toe Strength" T Expression_Filmic_Tonemap.toeStr}
+ addUserKnob {41 toeNum l "Toe Numerator" T Expression_Filmic_Tonemap.toeNum}
+ addUserKnob {41 toeDenom l "Toe Denominator" T Expression_Filmic_Tonemap.toeDenom}
+ addUserKnob {41 linWhite l "Linear White" T Expression_Filmic_Tonemap.linWhite}
+ addUserKnob {26 ""}
+ addUserKnob {41 use_mask_input l "mask input" T NodeWrapper.use_mask_input}
+ addUserKnob {41 maskChannelMask l "" -STARTLINE T Expression_Filmic_Tonemap.maskChannelMask}
+ addUserKnob {41 maskChannelInput l " input" -STARTLINE T Expression_Filmic_Tonemap.maskChannelInput}
+ addUserKnob {41 inject T Expression_Filmic_Tonemap.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Expression_Filmic_Tonemap.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Expression_Filmic_Tonemap.fringe}
+ addUserKnob {41 unpremult l "(un)premult by" T Expression_Filmic_Tonemap.unpremult}
+ addUserKnob {41 invert_unpremult l invert -STARTLINE T Expression_Filmic_Tonemap.invert_unpremult}
+ addUserKnob {41 which l mix T NodeWrapper.which}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -370
+  ypos -561
+ }
+ Dot {
+  name Dot1
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -336
+  ypos -342
+ }
+set Nd2492000 [stack 0]
+ Multiply {
+  channels rgba
+  value {{"pow(2, parent.exposure)"}}
+  maskChannelMask {{{parent.Expression_Filmic_Tonemap.maskChannelMask}}}
+  inject {{parent.Expression_Filmic_Tonemap.inject}}
+  invert_mask {{parent.Expression_Filmic_Tonemap.invert_mask}}
+  fringe {{parent.Expression_Filmic_Tonemap.fringe}}
+  unpremult {{{parent.Expression_Filmic_Tonemap.unpremult}}}
+  invert_unpremult {{parent.Expression_Filmic_Tonemap.invert_unpremult}}
+  mix {{parent.Expression_Filmic_Tonemap.mix}}
+  name Exposure
+  xpos -370
+  ypos -177
+ }
+ Expression {
+  expr0 "((r*(shStr*r+linAngle*linStr) + toeStr*toeNum) / (r*(shStr*r+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  expr1 "((g*(shStr*g+linAngle*linStr) + toeStr*toeNum) / (g*(shStr*g+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  expr2 "((b*(shStr*b+linAngle*linStr) + toeStr*toeNum) / (b*(shStr*b+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  name Expression_Filmic_Tonemap
+  selected true
+  xpos -370
+  ypos -133
+  addUserKnob {20 User}
+  addUserKnob {7 shStr l "Shoulder Strength"}
+  shStr 1
+  addUserKnob {7 linStr l "Linear Strength"}
+  addUserKnob {7 linAngle l "Linear Angle"}
+  linAngle 0.45
+  addUserKnob {7 toeStr l "Toe Strength"}
+  toeStr 0.35
+  addUserKnob {7 toeNum l "Toe Numerator"}
+  toeNum 0.495
+  addUserKnob {7 toeDenom l "Toe Denominator"}
+  toeDenom 0.97
+  addUserKnob {7 linWhite l "Linear White" R 0 50}
+  linWhite 1.5
+  addUserKnob {7 linWhiteMult R 0 12}
+  linWhiteMult {{"((linWhite*(shStr*linWhite+linAngle*linStr) + toeStr*toeNum) / (linWhite*(shStr*linWhite+linStr)+toeStr*toeDenom) - toeNum/toeDenom)"}}
+ }
+ Dot {
+  name Dot4
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -336
+  ypos -6
+ }
+push $Nd2492000
+ Dot {
+  name Dot3
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -116
+  ypos -342
+ }
+ Dissolve {
+  inputs 2
+  channels rgba
+  which 1
+  fringe true
+  name NodeWrapper
+  knobChanged "n = nuke.thisNode()\nk = nuke.thisKnob()\n\nif k.name() == 'use_mask_input':\n    mask_input_name = 'InputMask'\n    pn = nuke.toNode('.'.join(n.fullName().split('.')\[:-1]))\n    pn.setInput(1, None)\n    mask_input = nuke.toNode(mask_input_name)\n    masknodes = \['Expression_Filmic_Tonemap', 'Exposure']\n    if not k.value():\n        nuke.delete(mask_input)\n    else:\n        mask_input = nuke.nodes.Input()\n        mask_input\['name'].setValue('InputMask')\n        mask_input.setXpos( 0 )\n        mask_input.setYpos( 0 )\n        for mn in masknodes:\n            nuke.toNode(mn).setInput(1, mask_input)\n"
+  xpos -150
+  ypos -9
+  addUserKnob {20 User}
+  addUserKnob {6 use_mask_input +STARTLINE}
+ }
+ Output {
+  name Output1
+  xpos -150
+  ypos 120
+ }
+end_group
+push $Nd2462e00
+Group {
+ name Tonemap4
+ xpos -1551
+ ypos 213
+ addUserKnob {20 tonemap l Tonemap t "Adjusts blend between linear colors and full tonemap"}
+ addUserKnob {41 operator l Operator t "Choose between tonemap operators.\n\nReinhard: Used by V-Ray. Desaturates bright colors. \n\nExponential Luma: Used by Maxwell and MODO. Maintains saturation and hue of bright colors.\n\nFilmic: Used by many video games. Offers a greater degree of control over the look. Tends to crush dark colors.\n\nReinhard Luma: Half-way between Reinhard and Exponential Luma. It maintains more color saturation in bright areas than Reinhard, but less so than Exponential Luma.\n\nLogarithmic Compression: Produces similar results to Reinhard, but somewhat brighter. Allows you to choose starting point for compression in order to preserve values of darker colors.\n\nHighlight compression: Basically the same as Reinhard, but uses a \"Compression\" control where higher values produce more compression and 1.0 is linear. Used by Corona." T Switch1.operator}
+ addUserKnob {41 mix l Amount t "Blends between input & tonemap" -STARTLINE T Merge1.mix}
+ addUserKnob {41 whitebalance l "White Balance" t "White Balance in degrees Kelvin.\n\nLow values produce a colder image; high values produce a warmer. Neutral is set to 7000 K.\n\nMin: 2000 K\nMax: 15 000 K" T WhiteBalance.whitebalance}
+ addUserKnob {20 exposure l Exposure n 1}
+ addUserKnob {41 mode l "Adjust in" T EXPTool1.mode}
+ addUserKnob {41 gang T EXPTool1.gang}
+ addUserKnob {41 red T EXPTool1.red}
+ addUserKnob {41 green T EXPTool1.green}
+ addUserKnob {41 blue T EXPTool1.blue}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {20 filmicControls l "Filmic Controls" n 1}
+ addUserKnob {19 Grade1_black l lift R 0 0.1}
+ Grade1_black {0.025 0.025 0.025 0.025}
+ addUserKnob {6 Grade1_black_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {41 shoulderStr l "Shoulder strength" T Expression_Filmic.shoulderStr}
+ addUserKnob {41 linStr l "Linear strength" T Expression_Filmic.linStr}
+ addUserKnob {41 linAngle l "Linear angle" T Expression_Filmic.linAngle}
+ addUserKnob {41 toeStr l "Toe strength" T Expression_Filmic.toeStr}
+ addUserKnob {41 toeNum l "Toe numerator" T Expression_Filmic.toeNum}
+ addUserKnob {41 toeDen l "Toe denominator" T Expression_Filmic.toeDen}
+ addUserKnob {41 whitepoint l "White point" T Expression_Filmic.whitepoint}
+ addUserKnob {20 endGroup_1 l endGroup n -1}
+ addUserKnob {20 LogCompressSettings l "Logarithmic Compression Controls" n 1}
+ LogCompressSettings 0
+ addUserKnob {8 SoftClip2_softclip_min l "Compression Start"}
+ addUserKnob {20 endGroup_2 l endGroup n -1}
+ addUserKnob {20 CompressControls l "Highlight Compression Controls" n 1}
+ CompressControls 0
+ addUserKnob {41 compression l "Highlight Compression" T Expression_Compression.compression}
+ addUserKnob {20 endGroup_3 l endGroup n -1}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  xpos -419
+  ypos 129
+  bdwidth 271
+  bdheight 77
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  xpos -418
+  ypos 223
+  bdwidth 279
+  bdheight 138
+ }
+ BackdropNode {
+  inputs 0
+  name Corona
+  xpos -423
+  ypos 396
+  bdwidth 285
+  bdheight 68
+ }
+ BackdropNode {
+  inputs 0
+  name Filmic
+  xpos -420
+  ypos 21
+  bdwidth 315
+  bdheight 87
+ }
+ BackdropNode {
+  inputs 0
+  name Luma_modo
+  xpos -129
+  ypos -219
+  bdwidth 273
+  bdheight 140
+ }
+ BackdropNode {
+  inputs 0
+  name Notes
+  label "Filmic tonemap operator is based\non John Hable's work for Unchartered 2:\nhttp://filmicgames.com/archives/75\n\nExponential luma operator is based on\nmodo's built-in tone mapper.\n\nReinhard operator is Reinhard global.\n"
+  note_font_size 25
+  xpos 290
+  ypos -224
+  bdwidth 546
+  bdheight 282
+ }
+ BackdropNode {
+  inputs 0
+  name Reinhard
+  xpos -425
+  ypos -130
+  bdwidth 212
+  bdheight 124
+ }
+ Input {
+  inputs 0
+  name mask
+  xpos -480
+  ypos -462
+  number 1
+ }
+ Dot {
+  name Dot19
+  xpos 238
+  ypos -459
+ }
+ Dot {
+  name Dot10
+  xpos 238
+  ypos 640
+ }
+ Input {
+  inputs 0
+  name img
+  xpos -578
+  ypos -463
+ }
+ Multiply {
+  channels rgb
+  value {{"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ reds,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} {"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ greens,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} {"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ blues,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} 1}
+  value_panelDropped true
+  name WhiteBalance
+  selected true
+  xpos -578
+  ypos -402
+  addUserKnob {20 User}
+  addUserKnob {7 whitebalance l "White Balance" t "White Balance in degrees Kelvin. Neutral is set to 7000 degrees.\n\nMin: 2000 K\nMax: 15000 K\n" R 2000 15000}
+  whitebalance 7000
+ }
+ Dot {
+  name Dot14
+  xpos -547
+  ypos -334
+ }
+set Nd250f880 [stack 0]
+ EXPTool {
+  mode Stops
+  name EXPTool1
+  xpos -578
+  ypos -271
+ }
+ Dot {
+  name Dot1
+  xpos -547
+  ypos -183
+ }
+set Nd250f180 [stack 0]
+ Dot {
+  name Dot4
+  xpos -547
+  ypos -89
+ }
+set Nd250ee00 [stack 0]
+ Dot {
+  name Dot5
+  xpos -545
+  ypos 58
+ }
+set Nd250ea80 [stack 0]
+ Dot {
+  name Dot16
+  xpos -545
+  ypos 152
+ }
+set Nd250e700 [stack 0]
+ Dot {
+  name Dot23
+  xpos -545
+  ypos 278
+ }
+set Nd250e380 [stack 0]
+ Dot {
+  name Dot34
+  xpos -545
+  ypos 435
+ }
+ Expression {
+  expr0 r*(1+r/(compression**2))/(1+r)
+  expr1 g*(1+g/(compression**2))/(1+g)
+  expr2 b*(1+b/(compression**2))/(1+b)
+  name Expression_Compression
+  xpos -332
+  ypos 432
+  addUserKnob {20 User}
+  addUserKnob {7 compression l "Highlight Compression" R 1 10}
+  compression 2
+ }
+ Dot {
+  name Dot26
+  xpos -64
+  ypos 435
+ }
+push $Nd250e380
+ SoftClip {
+  conversion "logarithmic compress"
+  softclip_min {{parent.SoftClip2_softclip_min}}
+  name SoftClip2
+  xpos -339
+  ypos 275
+ }
+ Dot {
+  name Dot25
+  xpos -43
+  ypos 278
+ }
+push $Nd250e700
+ Dot {
+  name Dot17
+  xpos -376
+  ypos 152
+ }
+set Nd2530a80 [stack 0]
+ Colorspace {
+  colorspace_out HSL
+  name Colorspace1
+  xpos -361
+  ypos 181
+ }
+push $Nd2530a80
+ MergeExpression {
+  inputs 2
+  temp_name0 luma
+  temp_expr0 Ab
+  expr0 r/(1+luma)
+  expr1 g/(1+luma)
+  expr2 b/(1+luma)
+  name MergeExpression1
+  xpos -299
+  ypos 149
+ }
+ Dot {
+  name Dot18
+  xpos -123
+  ypos 152
+ }
+ Dot {
+  name Dot22
+  xpos -1
+  ypos 228
+ }
+push $Nd250ea80
+ EXPTool {
+  mode Stops
+  red 1.8
+  green 1.8
+  blue 1.8
+  name EXPTool2
+  xpos -402
+  ypos 55
+ }
+set Nd2555500 [stack 0]
+ Expression {
+  temp_name0 luma
+  temp_expr0 "0.2126*r + 0.7152*b + 0.0722*g"
+  temp_name1 val
+  temp_expr1 "max(r, g, b)"
+  temp_name2 a1
+  temp_expr2 "clamp(1-luma, 0, 1)**InvLumaExponent*clamp(luma, 0, 1)**LumaExponent"
+  temp_name3 a2
+  temp_expr3 "clamp((1-luma), 0, 1)**10"
+  expr3 a2
+  name MaxLift
+  xpos -402
+  ypos 85
+  addUserKnob {20 User}
+  addUserKnob {7 InvLumaExponent l "Inverted Luma Exponent" R 1 30}
+  InvLumaExponent 20
+  addUserKnob {7 LumaExponent l "Luma Exponent" R 0.1 2}
+  LumaExponent 0.15
+ }
+push $Nd2555500
+ Grade {
+  inputs 1+1
+  black {{parent.Grade1_black.r} {parent.Grade1_black.g} {parent.Grade1_black.b} {parent.Grade1_black.a}}
+  name Grade1
+  xpos -279
+  ypos 55
+  addUserKnob {20 User}
+ }
+ Expression {
+  temp_name0 tNtD
+  temp_expr0 toeNum/toeDen
+  temp_name1 tStD
+  temp_expr1 toeStr*toeDen
+  temp_name2 tStN
+  temp_expr2 toeStr*toeNum
+  temp_name3 lAlS
+  temp_expr3 linAngle*linStr
+  expr0 ((r*(shoulderStr*r+lAlS)+tStN)/(r*(shoulderStr*r+linStr)+tStD))-tNtD
+  expr1 ((g*(shoulderStr*g+lAlS)+tStN)/(g*(shoulderStr*g+linStr)+tStD))-tNtD
+  expr2 ((b*(shoulderStr*b+lAlS)+tStN)/(b*(shoulderStr*b+linStr)+tStD))-tNtD
+  name Expression_Filmic
+  xpos -183
+  ypos 55
+  addUserKnob {20 User}
+  addUserKnob {7 shoulderStr l "Shoulder strength"}
+  shoulderStr 0.2
+  addUserKnob {7 linStr l "Linear strength"}
+  linStr 0.4
+  addUserKnob {7 linAngle l "Linear angle"}
+  linAngle 0.15
+  addUserKnob {7 toeStr l "Toe strength"}
+  toeStr 0.3
+  addUserKnob {7 toeNum l "Toe numerator" R 0 0.1}
+  toeNum 0.1
+  addUserKnob {7 toeDen l "Toe denominator"}
+  toeDen 1
+  addUserKnob {7 whitepoint l "White point" R 0 50}
+  addUserKnob {7 whitepointExp}
+  whitepointExp {{((whitepoint*(shoulderStr*whitepoint+linAngle*linStr)+toeStr*toeNum)/(whitepoint*(shoulderStr*whitepoint+linStr)+toeStr*toeDen))-(toeNum/toeDen)}}
+ }
+ Dot {
+  name Dot9
+  xpos -20
+  ypos 58
+ }
+ Dot {
+  name Dot21
+  xpos 69
+  ypos 221
+ }
+push $Nd250f180
+ Dot {
+  name Dot2
+  xpos -109
+  ypos -183
+ }
+set Nd2581880 [stack 0]
+ Dot {
+  name Dot3
+  xpos -36
+  ypos -117
+ }
+push $Nd2581880
+ Saturation {
+  saturation 0
+  name Saturation1
+  xpos -61
+  ypos -186
+ }
+ Add {
+  value 1
+  name Add1
+  xpos 38
+  ypos -192
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  Bchannels rgb
+  name Merge2
+  xpos 38
+  ypos -120
+ }
+ Dot {
+  name Dot8
+  xpos 69
+  ypos -20
+ }
+ Dot {
+  name Dot11
+  xpos 200
+  ypos 242
+ }
+push $Nd250ee00
+ Dot {
+  name Dot12
+  xpos -394
+  ypos -89
+ }
+set Nd2580000 [stack 0]
+ Dot {
+  name Dot13
+  xpos -394
+  ypos -43
+ }
+push $Nd2580000
+ Add {
+  value 1
+  name Add2
+  xpos -335
+  ypos -98
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  Bchannels rgb
+  name Merge3
+  xpos -335
+  ypos -46
+ }
+ Dot {
+  name Dot7
+  xpos 19
+  ypos 25
+ }
+ Dot {
+  name Dot20
+  xpos 136
+  ypos 221
+ }
+ Switch {
+  inputs 6
+  which {{operator}}
+  name Switch1
+  xpos 38
+  ypos 348
+  addUserKnob {20 User}
+  addUserKnob {4 operator l Operator t "Tonemap operator\n\nReinhard: \nDesaturates colours somewhat. Used by V-Ray and many other renderers.\n\nExponential luma: \nCan over-saturate bright colours. Used by MODO and Maxwell.\n\nFilmic:\nAdvanced tone mapper to simulate filmic response curves. Not based on actual film data. Used in certain video games. Offers manual control over the look.\n\nReinhard (Luma):\nReinhard operator but working in luminosity mode instead of per component. Used by Redshift." M {Reinhard "Exponential luma" Filmic "Reinhard (Luma)" "Logarithmic Compression" "Highlight Compression"}}
+  operator Filmic
+ }
+ Clamp {
+  maximum_enable false
+  name Clamp1
+  xpos 38
+  ypos 581
+  disable true
+ }
+push $Nd250f880
+ Dot {
+  name Dot15
+  xpos -616
+  ypos -282
+ }
+ Dot {
+  name Dot6
+  xpos -616
+  ypos 640
+ }
+ Merge2 {
+  inputs 2+1
+  operation copy
+  name Merge1
+  xpos 38
+  ypos 637
+ }
+ Output {
+  name Output1
+  xpos 38
+  ypos 737
+ }
+end_group
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/pendiente/testing/untone.exr
+ format "1439 809 0 0 1439 809 1 "
+ origset true
+ colorspace linear
+ name Read3
+ xpos -346
+ ypos -345
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/pendiente/testing/2.exr
+ format "2880 1620 0 0 2880 1620 1 "
+ origset true
+ name Read4
+ xpos -1488
+ ypos 9
+}
+push $Nd2462e00
+Group {
+ name TonemapFilmic2
+ help "Implementing John Hable's Filmic Tonemapping algorithm as a Nuke gizmo.\n\nhttp://filmicgames.com/archives/75\nhttp://www.slideshare.net/ozlael/hable-john-uncharted2-hdr-lighting\n\n## Filmic Tonemapping\nA = Shoulder Strength\nB = Linear Strength\nC = Linear Angle\nD = Toe Strength\nE = Toe Numerator\nF = Toe Denominator\n\tNote: E/F = Toe Angle\nLinearWhite = Linear White Point Value\n\nF(x) = ((x*(A*x+C*B) + D*E) / (x*(A*x+B) + D*F)) - E/F\nFinalColor = F(LinearColor)/F(LinearWhite)\n\nA = 0.22\nB = 0.30\nC = 0.10\nD = 0.20\nE = 0.01\nF = 0.30\nLinearWhite = 11.2\nThese numbers are assuming linear source data."
+ tile_color 0xe0e0e0ff
+ xpos -1053
+ ypos 205
+ addUserKnob {20 Tonamap l Tonemap}
+ addUserKnob {26 ""}
+ addUserKnob {7 exposure t "Adjust the exposure before the tonemap in stops." R -4 4}
+ addUserKnob {41 shStr l "Shoulder Strength" T Expression_Filmic_Tonemap.shStr}
+ addUserKnob {41 linStr l "Linear Strength" T Expression_Filmic_Tonemap.linStr}
+ addUserKnob {41 linAngle l "Linear Angle" T Expression_Filmic_Tonemap.linAngle}
+ addUserKnob {41 toeStr l "Toe Strength" T Expression_Filmic_Tonemap.toeStr}
+ addUserKnob {41 toeNum l "Toe Numerator" T Expression_Filmic_Tonemap.toeNum}
+ addUserKnob {41 toeDenom l "Toe Denominator" T Expression_Filmic_Tonemap.toeDenom}
+ addUserKnob {41 linWhite l "Linear White" T Expression_Filmic_Tonemap.linWhite}
+ addUserKnob {26 ""}
+ addUserKnob {41 use_mask_input l "mask input" T NodeWrapper.use_mask_input}
+ addUserKnob {41 maskChannelMask l "" -STARTLINE T Expression_Filmic_Tonemap.maskChannelMask}
+ addUserKnob {41 maskChannelInput l " input" -STARTLINE T Expression_Filmic_Tonemap.maskChannelInput}
+ addUserKnob {41 inject T Expression_Filmic_Tonemap.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Expression_Filmic_Tonemap.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Expression_Filmic_Tonemap.fringe}
+ addUserKnob {41 unpremult l "(un)premult by" T Expression_Filmic_Tonemap.unpremult}
+ addUserKnob {41 invert_unpremult l invert -STARTLINE T Expression_Filmic_Tonemap.invert_unpremult}
+ addUserKnob {41 which l mix T NodeWrapper.which}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -370
+  ypos -561
+ }
+ Dot {
+  name Dot1
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -336
+  ypos -342
+ }
+set Nd2815c00 [stack 0]
+ Multiply {
+  channels rgba
+  value {{"pow(2, parent.exposure)"}}
+  maskChannelMask {{{parent.Expression_Filmic_Tonemap.maskChannelMask}}}
+  inject {{parent.Expression_Filmic_Tonemap.inject}}
+  invert_mask {{parent.Expression_Filmic_Tonemap.invert_mask}}
+  fringe {{parent.Expression_Filmic_Tonemap.fringe}}
+  unpremult {{{parent.Expression_Filmic_Tonemap.unpremult}}}
+  invert_unpremult {{parent.Expression_Filmic_Tonemap.invert_unpremult}}
+  mix {{parent.Expression_Filmic_Tonemap.mix}}
+  name Exposure
+  xpos -370
+  ypos -177
+ }
+ Expression {
+  expr0 "((r*(shStr*r+linAngle*linStr) + toeStr*toeNum) / (r*(shStr*r+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  expr1 "((g*(shStr*g+linAngle*linStr) + toeStr*toeNum) / (g*(shStr*g+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  expr2 "((b*(shStr*b+linAngle*linStr) + toeStr*toeNum) / (b*(shStr*b+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  name Expression_Filmic_Tonemap
+  selected true
+  xpos -370
+  ypos -133
+  addUserKnob {20 User}
+  addUserKnob {7 shStr l "Shoulder Strength"}
+  shStr 0.305
+  addUserKnob {7 linStr l "Linear Strength"}
+  linStr 0.055
+  addUserKnob {7 linAngle l "Linear Angle"}
+  linAngle 0.49
+  addUserKnob {7 toeStr l "Toe Strength"}
+  toeStr 0.225
+  addUserKnob {7 toeNum l "Toe Numerator"}
+  toeNum 0.04
+  addUserKnob {7 toeDenom l "Toe Denominator"}
+  toeDenom 0.22
+  addUserKnob {7 linWhite l "Linear White" R 0 50}
+  linWhite 11.2
+  addUserKnob {7 linWhiteMult R 0 12}
+  linWhiteMult {{"((linWhite*(shStr*linWhite+linAngle*linStr) + toeStr*toeNum) / (linWhite*(shStr*linWhite+linStr)+toeStr*toeDenom) - toeNum/toeDenom)"}}
+ }
+ Dot {
+  name Dot4
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -336
+  ypos -6
+ }
+push $Nd2815c00
+ Dot {
+  name Dot3
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -116
+  ypos -342
+ }
+ Dissolve {
+  inputs 2
+  channels rgba
+  which 1
+  fringe true
+  name NodeWrapper
+  knobChanged "n = nuke.thisNode()\nk = nuke.thisKnob()\n\nif k.name() == 'use_mask_input':\n    mask_input_name = 'InputMask'\n    pn = nuke.toNode('.'.join(n.fullName().split('.')\[:-1]))\n    pn.setInput(1, None)\n    mask_input = nuke.toNode(mask_input_name)\n    masknodes = \['Expression_Filmic_Tonemap', 'Exposure']\n    if not k.value():\n        nuke.delete(mask_input)\n    else:\n        mask_input = nuke.nodes.Input()\n        mask_input\['name'].setValue('InputMask')\n        mask_input.setXpos( 0 )\n        mask_input.setYpos( 0 )\n        for mn in masknodes:\n            nuke.toNode(mn).setInput(1, mask_input)\n"
+  xpos -150
+  ypos -9
+  addUserKnob {20 User}
+  addUserKnob {6 use_mask_input +STARTLINE}
+ }
+ Output {
+  name Output1
+  xpos -150
+  ypos 120
+ }
+end_group
+push $Nd2462e00
+Group {
+ name TonemapFilmicHiglightCompresion1
+ help "Implementing John Hable's Filmic Tonemapping algorithm as a Nuke gizmo.\n\nhttp://filmicgames.com/archives/75\nhttp://www.slideshare.net/ozlael/hable-john-uncharted2-hdr-lighting\n\n## Filmic Tonemapping\nA = Shoulder Strength\nB = Linear Strength\nC = Linear Angle\nD = Toe Strength\nE = Toe Numerator\nF = Toe Denominator\n\tNote: E/F = Toe Angle\nLinearWhite = Linear White Point Value\n\nF(x) = ((x*(A*x+C*B) + D*E) / (x*(A*x+B) + D*F)) - E/F\nFinalColor = F(LinearColor)/F(LinearWhite)\n\nA = 0.22\nB = 0.30\nC = 0.10\nD = 0.20\nE = 0.01\nF = 0.30\nLinearWhite = 11.2\nThese numbers are assuming linear source data."
+ tile_color 0xeff3cff
+ xpos -904
+ ypos 208
+ addUserKnob {20 Tonamap l Tonemap}
+ addUserKnob {26 ""}
+ addUserKnob {7 exposure t "Adjust the exposure before the tonemap in stops." R -4 4}
+ addUserKnob {41 shStr l "Shoulder Strength" T Expression_Filmic_Tonemap.shStr}
+ addUserKnob {41 linStr l "Linear Strength" T Expression_Filmic_Tonemap.linStr}
+ addUserKnob {41 linAngle l "Linear Angle" T Expression_Filmic_Tonemap.linAngle}
+ addUserKnob {41 toeStr l "Toe Strength" T Expression_Filmic_Tonemap.toeStr}
+ addUserKnob {41 toeNum l "Toe Numerator" T Expression_Filmic_Tonemap.toeNum}
+ addUserKnob {41 toeDenom l "Toe Denominator" T Expression_Filmic_Tonemap.toeDenom}
+ addUserKnob {41 linWhite l "Linear White" T Expression_Filmic_Tonemap.linWhite}
+ addUserKnob {26 ""}
+ addUserKnob {41 use_mask_input l "mask input" T NodeWrapper.use_mask_input}
+ addUserKnob {41 maskChannelMask l "" -STARTLINE T Expression_Filmic_Tonemap.maskChannelMask}
+ addUserKnob {41 maskChannelInput l " input" -STARTLINE T Expression_Filmic_Tonemap.maskChannelInput}
+ addUserKnob {41 inject T Expression_Filmic_Tonemap.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Expression_Filmic_Tonemap.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Expression_Filmic_Tonemap.fringe}
+ addUserKnob {41 unpremult l "(un)premult by" T Expression_Filmic_Tonemap.unpremult}
+ addUserKnob {41 invert_unpremult l invert -STARTLINE T Expression_Filmic_Tonemap.invert_unpremult}
+ addUserKnob {41 which l mix T NodeWrapper.which}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -370
+  ypos -561
+ }
+ Dot {
+  name Dot1
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -336
+  ypos -342
+ }
+set Nd283bc00 [stack 0]
+ Multiply {
+  channels rgba
+  value {{"pow(2, parent.exposure)"}}
+  maskChannelMask {{{parent.Expression_Filmic_Tonemap.maskChannelMask}}}
+  inject {{parent.Expression_Filmic_Tonemap.inject}}
+  invert_mask {{parent.Expression_Filmic_Tonemap.invert_mask}}
+  fringe {{parent.Expression_Filmic_Tonemap.fringe}}
+  unpremult {{{parent.Expression_Filmic_Tonemap.unpremult}}}
+  invert_unpremult {{parent.Expression_Filmic_Tonemap.invert_unpremult}}
+  mix {{parent.Expression_Filmic_Tonemap.mix}}
+  name Exposure
+  xpos -370
+  ypos -177
+ }
+ Expression {
+  expr0 "((r*(shStr*r+linAngle*linStr) + toeStr*toeNum) / (r*(shStr*r+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  expr1 "((g*(shStr*g+linAngle*linStr) + toeStr*toeNum) / (g*(shStr*g+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  expr2 "((b*(shStr*b+linAngle*linStr) + toeStr*toeNum) / (b*(shStr*b+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  name Expression_Filmic_Tonemap
+  selected true
+  xpos -370
+  ypos -133
+  addUserKnob {20 User}
+  addUserKnob {7 shStr l "Shoulder Strength"}
+  shStr 0.115
+  addUserKnob {7 linStr l "Linear Strength"}
+  linStr 0.04
+  addUserKnob {7 linAngle l "Linear Angle"}
+  linAngle 0.455
+  addUserKnob {7 toeStr l "Toe Strength"}
+  toeStr 0.225
+  addUserKnob {7 toeNum l "Toe Numerator"}
+  toeNum 0.04
+  addUserKnob {7 toeDenom l "Toe Denominator"}
+  toeDenom 0.22
+  addUserKnob {7 linWhite l "Linear White" R 0 50}
+  linWhite 11.2
+  addUserKnob {7 linWhiteMult R 0 12}
+  linWhiteMult {{"((linWhite*(shStr*linWhite+linAngle*linStr) + toeStr*toeNum) / (linWhite*(shStr*linWhite+linStr)+toeStr*toeDenom) - toeNum/toeDenom)"}}
+ }
+ Dot {
+  name Dot4
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -336
+  ypos -6
+ }
+push $Nd283bc00
+ Dot {
+  name Dot3
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -116
+  ypos -342
+ }
+ Dissolve {
+  inputs 2
+  channels rgba
+  which 1
+  fringe true
+  name NodeWrapper
+  knobChanged "n = nuke.thisNode()\nk = nuke.thisKnob()\n\nif k.name() == 'use_mask_input':\n    mask_input_name = 'InputMask'\n    pn = nuke.toNode('.'.join(n.fullName().split('.')\[:-1]))\n    pn.setInput(1, None)\n    mask_input = nuke.toNode(mask_input_name)\n    masknodes = \['Expression_Filmic_Tonemap', 'Exposure']\n    if not k.value():\n        nuke.delete(mask_input)\n    else:\n        mask_input = nuke.nodes.Input()\n        mask_input\['name'].setValue('InputMask')\n        mask_input.setXpos( 0 )\n        mask_input.setYpos( 0 )\n        for mn in masknodes:\n            nuke.toNode(mn).setInput(1, mask_input)\n"
+  xpos -150
+  ypos -9
+  addUserKnob {20 User}
+  addUserKnob {6 use_mask_input +STARTLINE}
+ }
+ Output {
+  name Output1
+  xpos -150
+  ypos 120
+ }
+end_group
+ColorCorrect {
+ saturation 1.06
+ contrast 1.14
+ gamma 1.46
+ gain 0.86
+ midtones.contrast 0.98
+ name ColorCorrect8
+ xpos -904
+ ypos 251
+}
+push $Nd2462e00
+Group {
+ name TonemapFilmic5
+ help "Implementing John Hable's Filmic Tonemapping algorithm as a Nuke gizmo.\n\nhttp://filmicgames.com/archives/75\nhttp://www.slideshare.net/ozlael/hable-john-uncharted2-hdr-lighting\n\n## Filmic Tonemapping\nA = Shoulder Strength\nB = Linear Strength\nC = Linear Angle\nD = Toe Strength\nE = Toe Numerator\nF = Toe Denominator\n\tNote: E/F = Toe Angle\nLinearWhite = Linear White Point Value\n\nF(x) = ((x*(A*x+C*B) + D*E) / (x*(A*x+B) + D*F)) - E/F\nFinalColor = F(LinearColor)/F(LinearWhite)\n\nA = 0.22\nB = 0.30\nC = 0.10\nD = 0.20\nE = 0.01\nF = 0.30\nLinearWhite = 11.2\nThese numbers are assuming linear source data."
+ tile_color 0xff0000ff
+ xpos -1149
+ ypos 213
+ addUserKnob {20 Tonamap l Tonemap}
+ addUserKnob {26 ""}
+ addUserKnob {7 exposure t "Adjust the exposure before the tonemap in stops." R -4 4}
+ addUserKnob {41 shStr l "Shoulder Strength" T Expression_Filmic_Tonemap.shStr}
+ addUserKnob {41 linStr l "Linear Strength" T Expression_Filmic_Tonemap.linStr}
+ addUserKnob {41 linAngle l "Linear Angle" T Expression_Filmic_Tonemap.linAngle}
+ addUserKnob {41 toeStr l "Toe Strength" T Expression_Filmic_Tonemap.toeStr}
+ addUserKnob {41 toeNum l "Toe Numerator" T Expression_Filmic_Tonemap.toeNum}
+ addUserKnob {41 toeDenom l "Toe Denominator" T Expression_Filmic_Tonemap.toeDenom}
+ addUserKnob {41 linWhite l "Linear White" T Expression_Filmic_Tonemap.linWhite}
+ addUserKnob {26 ""}
+ addUserKnob {41 use_mask_input l "mask input" T NodeWrapper.use_mask_input}
+ addUserKnob {41 maskChannelMask l "" -STARTLINE T Expression_Filmic_Tonemap.maskChannelMask}
+ addUserKnob {41 maskChannelInput l " input" -STARTLINE T Expression_Filmic_Tonemap.maskChannelInput}
+ addUserKnob {41 inject T Expression_Filmic_Tonemap.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Expression_Filmic_Tonemap.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Expression_Filmic_Tonemap.fringe}
+ addUserKnob {41 unpremult l "(un)premult by" T Expression_Filmic_Tonemap.unpremult}
+ addUserKnob {41 invert_unpremult l invert -STARTLINE T Expression_Filmic_Tonemap.invert_unpremult}
+ addUserKnob {41 which l mix T NodeWrapper.which}
+}
+ Input {
+  inputs 0
+  name Input
+  xpos -370
+  ypos -561
+ }
+ Dot {
+  name Dot1
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -336
+  ypos -342
+ }
+set Nd2877880 [stack 0]
+ Multiply {
+  channels rgba
+  value {{"pow(2, parent.exposure)"}}
+  maskChannelMask {{{parent.Expression_Filmic_Tonemap.maskChannelMask}}}
+  inject {{parent.Expression_Filmic_Tonemap.inject}}
+  invert_mask {{parent.Expression_Filmic_Tonemap.invert_mask}}
+  fringe {{parent.Expression_Filmic_Tonemap.fringe}}
+  unpremult {{{parent.Expression_Filmic_Tonemap.unpremult}}}
+  invert_unpremult {{parent.Expression_Filmic_Tonemap.invert_unpremult}}
+  mix {{parent.Expression_Filmic_Tonemap.mix}}
+  name Exposure
+  xpos -370
+  ypos -177
+ }
+ Expression {
+  expr0 "((r*(shStr*r+linAngle*linStr) + toeStr*toeNum) / (r*(shStr*r+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  expr1 "((g*(shStr*g+linAngle*linStr) + toeStr*toeNum) / (g*(shStr*g+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  expr2 "((b*(shStr*b+linAngle*linStr) + toeStr*toeNum) / (b*(shStr*b+linStr)+toeStr*toeDenom) - toeNum/toeDenom)/linWhiteMult"
+  name Expression_Filmic_Tonemap
+  selected true
+  xpos -370
+  ypos -133
+  addUserKnob {20 User}
+  addUserKnob {7 shStr l "Shoulder Strength"}
+  shStr 0.52
+  addUserKnob {7 linStr l "Linear Strength"}
+  addUserKnob {7 linAngle l "Linear Angle"}
+  linAngle 0.45
+  addUserKnob {7 toeStr l "Toe Strength"}
+  toeStr 0.295
+  addUserKnob {7 toeNum l "Toe Numerator"}
+  toeNum 0.035
+  addUserKnob {7 toeDenom l "Toe Denominator"}
+  toeDenom 0.3
+  addUserKnob {7 linWhite l "Linear White" R 0 50}
+  linWhite 15.6
+  addUserKnob {7 linWhiteMult R 0 12}
+  linWhiteMult {{"((linWhite*(shStr*linWhite+linAngle*linStr) + toeStr*toeNum) / (linWhite*(shStr*linWhite+linStr)+toeStr*toeDenom) - toeNum/toeDenom)"}}
+ }
+ Dot {
+  name Dot4
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -336
+  ypos -6
+ }
+push $Nd2877880
+ Dot {
+  name Dot3
+  note_font_size 42
+  note_font_color 0x7f7f7f01
+  xpos -116
+  ypos -342
+ }
+ Dissolve {
+  inputs 2
+  channels rgba
+  which 1
+  fringe true
+  name NodeWrapper
+  knobChanged "n = nuke.thisNode()\nk = nuke.thisKnob()\n\nif k.name() == 'use_mask_input':\n    mask_input_name = 'InputMask'\n    pn = nuke.toNode('.'.join(n.fullName().split('.')\[:-1]))\n    pn.setInput(1, None)\n    mask_input = nuke.toNode(mask_input_name)\n    masknodes = \['Expression_Filmic_Tonemap', 'Exposure']\n    if not k.value():\n        nuke.delete(mask_input)\n    else:\n        mask_input = nuke.nodes.Input()\n        mask_input\['name'].setValue('InputMask')\n        mask_input.setXpos( 0 )\n        mask_input.setYpos( 0 )\n        for mn in masknodes:\n            nuke.toNode(mn).setInput(1, mask_input)\n"
+  xpos -150
+  ypos -9
+  addUserKnob {20 User}
+  addUserKnob {6 use_mask_input +STARTLINE}
+ }
+ Output {
+  name Output1
+  xpos -150
+  ypos 120
+ }
+end_group
+push $Nd2462e00
+Group {
+ name Tonemap2
+ xpos -1665
+ ypos 203
+ addUserKnob {20 tonemap l Tonemap t "Adjusts blend between linear colors and full tonemap"}
+ addUserKnob {41 operator l Operator t "Choose between tonemap operators.\n\nReinhard: Used by V-Ray. Desaturates bright colors. \n\nExponential Luma: Used by Maxwell and MODO. Maintains saturation and hue of bright colors.\n\nFilmic: Used by many video games. Offers a greater degree of control over the look. Tends to crush dark colors.\n\nReinhard Luma: Half-way between Reinhard and Exponential Luma. It maintains more color saturation in bright areas than Reinhard, but less so than Exponential Luma.\n\nLogarithmic Compression: Produces similar results to Reinhard, but somewhat brighter. Allows you to choose starting point for compression in order to preserve values of darker colors.\n\nHighlight compression: Basically the same as Reinhard, but uses a \"Compression\" control where higher values produce more compression and 1.0 is linear. Used by Corona." T Switch1.operator}
+ addUserKnob {41 mix l Amount t "Blends between input & tonemap" -STARTLINE T Merge1.mix}
+ addUserKnob {41 whitebalance l "White Balance" t "White Balance in degrees Kelvin.\n\nLow values produce a colder image; high values produce a warmer. Neutral is set to 7000 K.\n\nMin: 2000 K\nMax: 15 000 K" T WhiteBalance.whitebalance}
+ addUserKnob {20 exposure l Exposure n 1}
+ addUserKnob {41 mode l "Adjust in" T EXPTool1.mode}
+ addUserKnob {41 gang T EXPTool1.gang}
+ addUserKnob {41 red T EXPTool1.red}
+ addUserKnob {41 green T EXPTool1.green}
+ addUserKnob {41 blue T EXPTool1.blue}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {20 filmicControls l "Filmic Controls" n 1}
+ addUserKnob {19 Grade1_black l lift R 0 0.1}
+ Grade1_black 0.033
+ addUserKnob {6 Grade1_black_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {41 shoulderStr l "Shoulder strength" T Expression_Filmic.shoulderStr}
+ addUserKnob {41 linStr l "Linear strength" T Expression_Filmic.linStr}
+ addUserKnob {41 linAngle l "Linear angle" T Expression_Filmic.linAngle}
+ addUserKnob {41 toeStr l "Toe strength" T Expression_Filmic.toeStr}
+ addUserKnob {41 toeNum l "Toe numerator" T Expression_Filmic.toeNum}
+ addUserKnob {41 toeDen l "Toe denominator" T Expression_Filmic.toeDen}
+ addUserKnob {41 whitepoint l "White point" T Expression_Filmic.whitepoint}
+ addUserKnob {20 endGroup_1 l endGroup n -1}
+ addUserKnob {20 LogCompressSettings l "Logarithmic Compression Controls" n 1}
+ addUserKnob {8 SoftClip2_softclip_min l "Compression Start"}
+ addUserKnob {20 endGroup_2 l endGroup n -1}
+ addUserKnob {20 CompressControls l "Highlight Compression Controls" n 1}
+ addUserKnob {41 compression l "Highlight Compression" T Expression_Compression.compression}
+ addUserKnob {20 endGroup_3 l endGroup n -1}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  xpos -419
+  ypos 129
+  bdwidth 271
+  bdheight 77
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  xpos -418
+  ypos 223
+  bdwidth 279
+  bdheight 138
+ }
+ BackdropNode {
+  inputs 0
+  name Corona
+  xpos -423
+  ypos 396
+  bdwidth 285
+  bdheight 68
+ }
+ BackdropNode {
+  inputs 0
+  name Filmic
+  xpos -420
+  ypos 21
+  bdwidth 315
+  bdheight 87
+ }
+ BackdropNode {
+  inputs 0
+  name Luma_modo
+  xpos -129
+  ypos -219
+  bdwidth 273
+  bdheight 140
+ }
+ BackdropNode {
+  inputs 0
+  name Notes
+  label "Filmic tonemap operator is based\non John Hable's work for Unchartered 2:\nhttp://filmicgames.com/archives/75\n\nExponential luma operator is based on\nmodo's built-in tone mapper.\n\nReinhard operator is Reinhard global.\n"
+  note_font_size 25
+  xpos 290
+  ypos -224
+  bdwidth 546
+  bdheight 282
+ }
+ BackdropNode {
+  inputs 0
+  name Reinhard
+  xpos -425
+  ypos -130
+  bdwidth 212
+  bdheight 124
+ }
+ Input {
+  inputs 0
+  name mask
+  xpos -480
+  ypos -462
+  number 1
+ }
+ Dot {
+  name Dot19
+  xpos 238
+  ypos -459
+ }
+ Dot {
+  name Dot10
+  xpos 238
+  ypos 640
+ }
+ Input {
+  inputs 0
+  name img
+  xpos -578
+  ypos -463
+ }
+ Multiply {
+  channels rgb
+  value {{"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ reds,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} {"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ greens,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} {"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ blues,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} 1}
+  value_panelDropped true
+  name WhiteBalance
+  selected true
+  xpos -578
+  ypos -402
+  addUserKnob {20 User}
+  addUserKnob {7 whitebalance l "White Balance" t "White Balance in degrees Kelvin. Neutral is set to 7000 degrees.\n\nMin: 2000 K\nMax: 15000 K\n" R 2000 15000}
+  whitebalance 7000
+ }
+ Dot {
+  name Dot14
+  xpos -547
+  ypos -334
+ }
+set Nd270b500 [stack 0]
+ EXPTool {
+  mode Stops
+  name EXPTool1
+  xpos -578
+  ypos -271
+ }
+ Dot {
+  name Dot1
+  xpos -547
+  ypos -183
+ }
+set Nd270ae00 [stack 0]
+ Dot {
+  name Dot4
+  xpos -547
+  ypos -89
+ }
+set Nd270aa80 [stack 0]
+ Dot {
+  name Dot5
+  xpos -545
+  ypos 58
+ }
+set Nd270a700 [stack 0]
+ Dot {
+  name Dot16
+  xpos -545
+  ypos 152
+ }
+set Nd270a380 [stack 0]
+ Dot {
+  name Dot23
+  xpos -545
+  ypos 278
+ }
+set Nd270a000 [stack 0]
+ Dot {
+  name Dot34
+  xpos -545
+  ypos 435
+ }
+ Expression {
+  expr0 r*(1+r/(compression**2))/(1+r)
+  expr1 g*(1+g/(compression**2))/(1+g)
+  expr2 b*(1+b/(compression**2))/(1+b)
+  name Expression_Compression
+  xpos -332
+  ypos 432
+  addUserKnob {20 User}
+  addUserKnob {7 compression l "Highlight Compression" R 1 10}
+  compression 2.45
+ }
+ Dot {
+  name Dot26
+  xpos -64
+  ypos 435
+ }
+push $Nd270a000
+ SoftClip {
+  conversion "logarithmic compress"
+  softclip_min {{parent.SoftClip2_softclip_min}}
+  name SoftClip2
+  xpos -339
+  ypos 275
+ }
+ Dot {
+  name Dot25
+  xpos -43
+  ypos 278
+ }
+push $Nd270a380
+ Dot {
+  name Dot17
+  xpos -376
+  ypos 152
+ }
+set Nd2724700 [stack 0]
+ Colorspace {
+  colorspace_out HSL
+  name Colorspace1
+  xpos -361
+  ypos 181
+ }
+push $Nd2724700
+ MergeExpression {
+  inputs 2
+  temp_name0 luma
+  temp_expr0 Ab
+  expr0 r/(1+luma)
+  expr1 g/(1+luma)
+  expr2 b/(1+luma)
+  name MergeExpression1
+  xpos -299
+  ypos 149
+ }
+ Dot {
+  name Dot18
+  xpos -123
+  ypos 152
+ }
+ Dot {
+  name Dot22
+  xpos -1
+  ypos 228
+ }
+push $Nd270a700
+ EXPTool {
+  mode Stops
+  red 1.8
+  green 1.8
+  blue 1.8
+  name EXPTool2
+  xpos -402
+  ypos 55
+ }
+set Nd2747180 [stack 0]
+ Expression {
+  temp_name0 luma
+  temp_expr0 "0.2126*r + 0.7152*b + 0.0722*g"
+  temp_name1 val
+  temp_expr1 "max(r, g, b)"
+  temp_name2 a1
+  temp_expr2 "clamp(1-luma, 0, 1)**InvLumaExponent*clamp(luma, 0, 1)**LumaExponent"
+  temp_name3 a2
+  temp_expr3 "clamp((1-luma), 0, 1)**10"
+  expr3 a2
+  name MaxLift
+  xpos -402
+  ypos 85
+  addUserKnob {20 User}
+  addUserKnob {7 InvLumaExponent l "Inverted Luma Exponent" R 1 30}
+  InvLumaExponent 20
+  addUserKnob {7 LumaExponent l "Luma Exponent" R 0.1 2}
+  LumaExponent 0.15
+ }
+push $Nd2747180
+ Grade {
+  inputs 1+1
+  black {{parent.Grade1_black.r} {parent.Grade1_black.g} {parent.Grade1_black.b} {parent.Grade1_black.a}}
+  name Grade1
+  xpos -279
+  ypos 55
+  addUserKnob {20 User}
+ }
+ Expression {
+  temp_name0 tNtD
+  temp_expr0 toeNum/toeDen
+  temp_name1 tStD
+  temp_expr1 toeStr*toeDen
+  temp_name2 tStN
+  temp_expr2 toeStr*toeNum
+  temp_name3 lAlS
+  temp_expr3 linAngle*linStr
+  expr0 ((r*(shoulderStr*r+lAlS)+tStN)/(r*(shoulderStr*r+linStr)+tStD))-tNtD
+  expr1 ((g*(shoulderStr*g+lAlS)+tStN)/(g*(shoulderStr*g+linStr)+tStD))-tNtD
+  expr2 ((b*(shoulderStr*b+lAlS)+tStN)/(b*(shoulderStr*b+linStr)+tStD))-tNtD
+  name Expression_Filmic
+  xpos -183
+  ypos 55
+  addUserKnob {20 User}
+  addUserKnob {7 shoulderStr l "Shoulder strength"}
+  shoulderStr 0.235
+  addUserKnob {7 linStr l "Linear strength"}
+  linStr 0.4
+  addUserKnob {7 linAngle l "Linear angle"}
+  linAngle 0.105
+  addUserKnob {7 toeStr l "Toe strength"}
+  toeStr 0.46
+  addUserKnob {7 toeNum l "Toe numerator" R 0 0.1}
+  toeNum 0.1
+  addUserKnob {7 toeDen l "Toe denominator"}
+  toeDen 1
+  addUserKnob {7 whitepoint l "White point" R 0 50}
+  addUserKnob {7 whitepointExp}
+  whitepointExp {{((whitepoint*(shoulderStr*whitepoint+linAngle*linStr)+toeStr*toeNum)/(whitepoint*(shoulderStr*whitepoint+linStr)+toeStr*toeDen))-(toeNum/toeDen)}}
+ }
+ Dot {
+  name Dot9
+  xpos -20
+  ypos 58
+ }
+ Dot {
+  name Dot21
+  xpos 69
+  ypos 221
+ }
+push $Nd270ae00
+ Dot {
+  name Dot2
+  xpos -109
+  ypos -183
+ }
+set Nd2775500 [stack 0]
+ Dot {
+  name Dot3
+  xpos -36
+  ypos -117
+ }
+push $Nd2775500
+ Saturation {
+  saturation 0
+  name Saturation1
+  xpos -61
+  ypos -186
+ }
+ Add {
+  value 1
+  name Add1
+  xpos 38
+  ypos -192
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  Bchannels rgb
+  name Merge2
+  xpos 38
+  ypos -120
+ }
+ Dot {
+  name Dot8
+  xpos 69
+  ypos -20
+ }
+ Dot {
+  name Dot11
+  xpos 200
+  ypos 242
+ }
+push $Nd270aa80
+ Dot {
+  name Dot12
+  xpos -394
+  ypos -89
+ }
+set Nd279bc00 [stack 0]
+ Dot {
+  name Dot13
+  xpos -394
+  ypos -43
+ }
+push $Nd279bc00
+ Add {
+  value 1
+  name Add2
+  xpos -335
+  ypos -98
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  Bchannels rgb
+  name Merge3
+  xpos -335
+  ypos -46
+ }
+ Dot {
+  name Dot7
+  xpos 19
+  ypos 25
+ }
+ Dot {
+  name Dot20
+  xpos 136
+  ypos 221
+ }
+ Switch {
+  inputs 6
+  which {{operator}}
+  name Switch1
+  xpos 38
+  ypos 348
+  addUserKnob {20 User}
+  addUserKnob {4 operator l Operator t "Tonemap operator\n\nReinhard: \nDesaturates colours somewhat. Used by V-Ray and many other renderers.\n\nExponential luma: \nCan over-saturate bright colours. Used by MODO and Maxwell.\n\nFilmic:\nAdvanced tone mapper to simulate filmic response curves. Not based on actual film data. Used in certain video games. Offers manual control over the look.\n\nReinhard (Luma):\nReinhard operator but working in luminosity mode instead of per component. Used by Redshift." M {Reinhard "Exponential luma" Filmic "Reinhard (Luma)" "Logarithmic Compression" "Highlight Compression"}}
+  operator "Reinhard (Luma)"
+ }
+ Clamp {
+  maximum_enable false
+  name Clamp1
+  xpos 38
+  ypos 581
+  disable true
+ }
+push $Nd270b500
+ Dot {
+  name Dot15
+  xpos -616
+  ypos -282
+ }
+ Dot {
+  name Dot6
+  xpos -616
+  ypos 640
+ }
+ Merge2 {
+  inputs 2+1
+  operation copy
+  name Merge1
+  xpos 38
+  ypos 637
+ }
+ Output {
+  name Output1
+  xpos 38
+  ypos 737
+ }
+end_group
+set Nd2481000 [stack 0]
+push $Nd2462e00
+Group {
+ name Tonemap1
+ xpos -1443
+ ypos 226
+ addUserKnob {20 tonemap l Tonemap t "Adjusts blend between linear colors and full tonemap"}
+ addUserKnob {41 operator l Operator t "Choose between tonemap operators.\n\nReinhard: Used by V-Ray. Desaturates bright colors. \n\nExponential Luma: Used by Maxwell and MODO. Maintains saturation and hue of bright colors.\n\nFilmic: Used by many video games. Offers a greater degree of control over the look. Tends to crush dark colors.\n\nReinhard Luma: Half-way between Reinhard and Exponential Luma. It maintains more color saturation in bright areas than Reinhard, but less so than Exponential Luma.\n\nLogarithmic Compression: Produces similar results to Reinhard, but somewhat brighter. Allows you to choose starting point for compression in order to preserve values of darker colors.\n\nHighlight compression: Basically the same as Reinhard, but uses a \"Compression\" control where higher values produce more compression and 1.0 is linear. Used by Corona." T Switch1.operator}
+ addUserKnob {41 mix l Amount t "Blends between input & tonemap" -STARTLINE T Merge1.mix}
+ addUserKnob {41 whitebalance l "White Balance" t "White Balance in degrees Kelvin.\n\nLow values produce a colder image; high values produce a warmer. Neutral is set to 7000 K.\n\nMin: 2000 K\nMax: 15 000 K" T WhiteBalance.whitebalance}
+ addUserKnob {20 exposure l Exposure n 1}
+ addUserKnob {41 mode l "Adjust in" T EXPTool1.mode}
+ addUserKnob {41 gang T EXPTool1.gang}
+ addUserKnob {41 red T EXPTool1.red}
+ addUserKnob {41 green T EXPTool1.green}
+ addUserKnob {41 blue T EXPTool1.blue}
+ addUserKnob {20 endGroup n -1}
+ addUserKnob {20 filmicControls l "Filmic Controls" n 1}
+ addUserKnob {19 Grade1_black l lift R 0 0.1}
+ Grade1_black 0.025
+ addUserKnob {6 Grade1_black_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 Grade1_black_panelDropped_1_1_1_1_1_1_1 l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {41 shoulderStr l "Shoulder strength" T Expression_Filmic.shoulderStr}
+ addUserKnob {41 linStr l "Linear strength" T Expression_Filmic.linStr}
+ addUserKnob {41 linAngle l "Linear angle" T Expression_Filmic.linAngle}
+ addUserKnob {41 toeStr l "Toe strength" T Expression_Filmic.toeStr}
+ addUserKnob {41 toeNum l "Toe numerator" T Expression_Filmic.toeNum}
+ addUserKnob {41 toeDen l "Toe denominator" T Expression_Filmic.toeDen}
+ addUserKnob {41 whitepoint l "White point" T Expression_Filmic.whitepoint}
+ addUserKnob {20 endGroup_1 l endGroup n -1}
+ addUserKnob {20 LogCompressSettings l "Logarithmic Compression Controls" n 1}
+ LogCompressSettings 0
+ addUserKnob {8 SoftClip2_softclip_min l "Compression Start"}
+ addUserKnob {20 endGroup_2 l endGroup n -1}
+ addUserKnob {20 CompressControls l "Highlight Compression Controls" n 1}
+ CompressControls 0
+ addUserKnob {41 compression l "Highlight Compression" T Expression_Compression.compression}
+ addUserKnob {20 endGroup_3 l endGroup n -1}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  xpos -419
+  ypos 129
+  bdwidth 271
+  bdheight 77
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  xpos -418
+  ypos 223
+  bdwidth 279
+  bdheight 138
+ }
+ BackdropNode {
+  inputs 0
+  name Corona
+  xpos -423
+  ypos 396
+  bdwidth 285
+  bdheight 68
+ }
+ BackdropNode {
+  inputs 0
+  name Filmic
+  xpos -420
+  ypos 21
+  bdwidth 315
+  bdheight 87
+ }
+ BackdropNode {
+  inputs 0
+  name Luma_modo
+  xpos -129
+  ypos -219
+  bdwidth 273
+  bdheight 140
+ }
+ BackdropNode {
+  inputs 0
+  name Notes
+  label "Filmic tonemap operator is based\non John Hable's work for Unchartered 2:\nhttp://filmicgames.com/archives/75\n\nExponential luma operator is based on\nmodo's built-in tone mapper.\n\nReinhard operator is Reinhard global.\n"
+  note_font_size 25
+  xpos 290
+  ypos -224
+  bdwidth 546
+  bdheight 282
+ }
+ BackdropNode {
+  inputs 0
+  name Reinhard
+  xpos -425
+  ypos -130
+  bdwidth 212
+  bdheight 124
+ }
+ Input {
+  inputs 0
+  name mask
+  xpos -480
+  ypos -462
+  number 1
+ }
+ Dot {
+  name Dot19
+  xpos 238
+  ypos -459
+ }
+ Dot {
+  name Dot10
+  xpos 238
+  ypos 640
+ }
+ Input {
+  inputs 0
+  name img
+  xpos -578
+  ypos -463
+ }
+ Multiply {
+  channels rgb
+  value {{"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ reds,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} {"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ greens,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} {"\[python -execlocal temps\\ =\\ \\ (2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000)\\nreds\\ =\\ \\ \\ (2.42,1.474,1.211,1.093,1.028,1.0,0.937,0.919,0.906,0.896,0.888,0.882,0.877,0.873)\\ngreens\\ =\\ (1.568,1.189,1.094,1.049,1.024,1.0,0.974,0.966,0.96,\\ 0.955,0.951,0.947,0.944,0.942)\\nblues\\ =\\ \\ (0.513,0.675,0.793,0.883,0.952,1.0,1.103,1.14,1.17,1.195,1.216,1.233,1.248,1.261)\\n\\ndef\\ LinearInt(positions,\\ values,\\ keyValue):\\n\\ \\ \\ \\ index_low\\ =\\ 0\\n\\ \\ \\ \\ index_high\\ =\\ len(positions)-1\\n\\ \\ \\ \\ for\\ index,\\ value\\ in\\ enumerate(positions):\\n\\ \\ \\ \\ \\ \\ \\ \\ diff\\ =\\ value-keyValue\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ diff\\ <\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ elif\\ diff\\ ==\\ 0:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_low\\ =\\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\ \\ \\ \\ \\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ index_high\\ =\\ index\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ break\\n\\n\\ \\ \\ \\ if\\ index_low\\ !=\\ index_high:\\n\\ \\ \\ \\ \\ \\ \\ \\ value_low\\ \\ =\\ positions\\\[index_low\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ value_high\\ =\\ positions\\\[index_high\\]\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ (keyValue-value_low\\ +\\ 0.0)/(value_high-value_low)\\n\\ \\ \\ \\ else:\\n\\ \\ \\ \\ \\ \\ \\ \\ fraction\\ =\\ 1.0\\n\\n\\ \\ \\ \\ color_low\\ \\ =\\ values\\\[index_low\\]\\n\\ \\ \\ \\ color_high\\ =\\ values\\\[index_high\\]\\n\\n\\ \\ \\ \\ color_out\\ \\ =\\ color_high*fraction+color_low*(1.0-fraction)\\n\\ \\ \\ \\ return\\ color_out\\n\\nret\\ =\\ 1.0/LinearInt(temps,\\ blues,\\ nuke.thisNode().knob(\\\"whitebalance\\\").value())]"} 1}
+  value_panelDropped true
+  name WhiteBalance
+  selected true
+  xpos -578
+  ypos -402
+  addUserKnob {20 User}
+  addUserKnob {7 whitebalance l "White Balance" t "White Balance in degrees Kelvin. Neutral is set to 7000 degrees.\n\nMin: 2000 K\nMax: 15000 K\n" R 2000 15000}
+  whitebalance 7000
+ }
+ Dot {
+  name Dot14
+  xpos -547
+  ypos -334
+ }
+set Nd25f6a80 [stack 0]
+ EXPTool {
+  mode Stops
+  name EXPTool1
+  xpos -578
+  ypos -271
+ }
+ Dot {
+  name Dot1
+  xpos -547
+  ypos -183
+ }
+set Nd25f6380 [stack 0]
+ Dot {
+  name Dot4
+  xpos -547
+  ypos -89
+ }
+set Nd25f6000 [stack 0]
+ Dot {
+  name Dot5
+  xpos -545
+  ypos 58
+ }
+set Nd2615c00 [stack 0]
+ Dot {
+  name Dot16
+  xpos -545
+  ypos 152
+ }
+set Nd2615880 [stack 0]
+ Dot {
+  name Dot23
+  xpos -545
+  ypos 278
+ }
+set Nd2615500 [stack 0]
+ Dot {
+  name Dot34
+  xpos -545
+  ypos 435
+ }
+ Expression {
+  expr0 r*(1+r/(compression**2))/(1+r)
+  expr1 g*(1+g/(compression**2))/(1+g)
+  expr2 b*(1+b/(compression**2))/(1+b)
+  name Expression_Compression
+  xpos -332
+  ypos 432
+  addUserKnob {20 User}
+  addUserKnob {7 compression l "Highlight Compression" R 1 10}
+  compression 2
+ }
+ Dot {
+  name Dot26
+  xpos -64
+  ypos 435
+ }
+push $Nd2615500
+ SoftClip {
+  conversion "logarithmic compress"
+  softclip_min {{parent.SoftClip2_softclip_min}}
+  name SoftClip2
+  xpos -339
+  ypos 275
+ }
+ Dot {
+  name Dot25
+  xpos -43
+  ypos 278
+ }
+push $Nd2615880
+ Dot {
+  name Dot17
+  xpos -376
+  ypos 152
+ }
+set Nd2633c00 [stack 0]
+ Colorspace {
+  colorspace_out HSL
+  name Colorspace1
+  xpos -361
+  ypos 181
+ }
+push $Nd2633c00
+ MergeExpression {
+  inputs 2
+  temp_name0 luma
+  temp_expr0 Ab
+  expr0 r/(1+luma)
+  expr1 g/(1+luma)
+  expr2 b/(1+luma)
+  name MergeExpression1
+  xpos -299
+  ypos 149
+ }
+ Dot {
+  name Dot18
+  xpos -123
+  ypos 152
+ }
+ Dot {
+  name Dot22
+  xpos -1
+  ypos 228
+ }
+push $Nd2615c00
+ EXPTool {
+  mode Stops
+  red 1.8
+  green 1.8
+  blue 1.8
+  name EXPTool2
+  xpos -402
+  ypos 55
+ }
+set Nd2632700 [stack 0]
+ Expression {
+  temp_name0 luma
+  temp_expr0 "0.2126*r + 0.7152*b + 0.0722*g"
+  temp_name1 val
+  temp_expr1 "max(r, g, b)"
+  temp_name2 a1
+  temp_expr2 "clamp(1-luma, 0, 1)**InvLumaExponent*clamp(luma, 0, 1)**LumaExponent"
+  temp_name3 a2
+  temp_expr3 "clamp((1-luma), 0, 1)**10"
+  expr3 a2
+  name MaxLift
+  xpos -402
+  ypos 85
+  addUserKnob {20 User}
+  addUserKnob {7 InvLumaExponent l "Inverted Luma Exponent" R 1 30}
+  InvLumaExponent 20
+  addUserKnob {7 LumaExponent l "Luma Exponent" R 0.1 2}
+  LumaExponent 0.15
+ }
+push $Nd2632700
+ Grade {
+  inputs 1+1
+  black {{parent.Grade1_black.r} {parent.Grade1_black.g} {parent.Grade1_black.b} {parent.Grade1_black.a}}
+  name Grade1
+  xpos -279
+  ypos 55
+  addUserKnob {20 User}
+ }
+ Expression {
+  temp_name0 tNtD
+  temp_expr0 toeNum/toeDen
+  temp_name1 tStD
+  temp_expr1 toeStr*toeDen
+  temp_name2 tStN
+  temp_expr2 toeStr*toeNum
+  temp_name3 lAlS
+  temp_expr3 linAngle*linStr
+  expr0 ((r*(shoulderStr*r+lAlS)+tStN)/(r*(shoulderStr*r+linStr)+tStD))-tNtD
+  expr1 ((g*(shoulderStr*g+lAlS)+tStN)/(g*(shoulderStr*g+linStr)+tStD))-tNtD
+  expr2 ((b*(shoulderStr*b+lAlS)+tStN)/(b*(shoulderStr*b+linStr)+tStD))-tNtD
+  name Expression_Filmic
+  xpos -183
+  ypos 55
+  addUserKnob {20 User}
+  addUserKnob {7 shoulderStr l "Shoulder strength"}
+  shoulderStr 0.155
+  addUserKnob {7 linStr l "Linear strength"}
+  linStr 0.24
+  addUserKnob {7 linAngle l "Linear angle"}
+  linAngle 0.315
+  addUserKnob {7 toeStr l "Toe strength"}
+  toeStr 0.605
+  addUserKnob {7 toeNum l "Toe numerator" R 0 0.1}
+  toeNum 0.064
+  addUserKnob {7 toeDen l "Toe denominator"}
+  toeDen 0.91
+  addUserKnob {7 whitepoint l "White point" R 0 50}
+  addUserKnob {7 whitepointExp}
+  whitepointExp {{((whitepoint*(shoulderStr*whitepoint+linAngle*linStr)+toeStr*toeNum)/(whitepoint*(shoulderStr*whitepoint+linStr)+toeStr*toeDen))-(toeNum/toeDen)}}
+ }
+ Dot {
+  name Dot9
+  xpos -20
+  ypos 58
+ }
+ Dot {
+  name Dot21
+  xpos 69
+  ypos 221
+ }
+push $Nd25f6380
+ Dot {
+  name Dot2
+  xpos -109
+  ypos -183
+ }
+set Nd265aa80 [stack 0]
+ Dot {
+  name Dot3
+  xpos -36
+  ypos -117
+ }
+push $Nd265aa80
+ Saturation {
+  saturation 0
+  name Saturation1
+  xpos -61
+  ypos -186
+ }
+ Add {
+  value 1
+  name Add1
+  xpos 38
+  ypos -192
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  Bchannels rgb
+  name Merge2
+  xpos 38
+  ypos -120
+ }
+ Dot {
+  name Dot8
+  xpos 69
+  ypos -20
+ }
+ Dot {
+  name Dot11
+  xpos 200
+  ypos 242
+ }
+push $Nd25f6000
+ Dot {
+  name Dot12
+  xpos -394
+  ypos -89
+ }
+set Nd2685180 [stack 0]
+ Dot {
+  name Dot13
+  xpos -394
+  ypos -43
+ }
+push $Nd2685180
+ Add {
+  value 1
+  name Add2
+  xpos -335
+  ypos -98
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  Bchannels rgb
+  name Merge3
+  xpos -335
+  ypos -46
+ }
+ Dot {
+  name Dot7
+  xpos 19
+  ypos 25
+ }
+ Dot {
+  name Dot20
+  xpos 136
+  ypos 221
+ }
+ Switch {
+  inputs 6
+  which {{operator}}
+  name Switch1
+  xpos 38
+  ypos 348
+  addUserKnob {20 User}
+  addUserKnob {4 operator l Operator t "Tonemap operator\n\nReinhard: \nDesaturates colours somewhat. Used by V-Ray and many other renderers.\n\nExponential luma: \nCan over-saturate bright colours. Used by MODO and Maxwell.\n\nFilmic:\nAdvanced tone mapper to simulate filmic response curves. Not based on actual film data. Used in certain video games. Offers manual control over the look.\n\nReinhard (Luma):\nReinhard operator but working in luminosity mode instead of per component. Used by Redshift." M {Reinhard "Exponential luma" Filmic "Reinhard (Luma)" "Logarithmic Compression" "Highlight Compression"}}
+  operator Filmic
+ }
+ Clamp {
+  maximum_enable false
+  name Clamp1
+  xpos 38
+  ypos 581
+  disable true
+ }
+push $Nd25f6a80
+ Dot {
+  name Dot15
+  xpos -616
+  ypos -282
+ }
+ Dot {
+  name Dot6
+  xpos -616
+  ypos 640
+ }
+ Merge2 {
+  inputs 2+1
+  operation copy
+  name Merge1
+  xpos 38
+  ypos 637
+ }
+ Output {
+  name Output1
+  xpos 38
+  ypos 737
+ }
+end_group
+set Nd2481400 [stack 0]
+Merge2 {
+ inputs 2
+ operation hard-light
+ mix 0.4
+ name Merge1
+ xpos -1530
+ ypos 354
+}
+Viewer {
+ frame_range 1-100
+ translate {0.1120000035 0.09799999744}
+ rotate 99.21105957
+ name Viewer1
+ xpos -1246
+ ypos 456
+}
+push $Nd2481400
+ColorCorrect {
+ saturation 1.42
+ gamma 0.8
+ name ColorCorrect9
+ xpos -1431
+ ypos 266
+}
+push $Nd2481000
+Merge2 {
+ inputs 2
+ operation hard-light
+ mix 0.4
+ name Merge2
+ xpos -1665
+ ypos 355
+}
+Write {
+ file C:/Users/Edwin/Desktop/pendiente/testing/result2.exr
+ file_type exr
+ datatype "32 bit float"
+ version 2
+ name Write1
+ selected true
+ xpos -1665
+ ypos 438
+}

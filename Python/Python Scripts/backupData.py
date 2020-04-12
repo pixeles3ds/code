@@ -77,17 +77,23 @@ copy(
 	)
 
 #---------------------------------------------------------
+# Nuke Files
+#---------------------------------------------------------
+
+p("Nuke Scripts")
+copy("C:/Nuke/", "D:/_Diario/codigo/", ignoreFiles = [ "*.exr", "*.hdr", "*.nk~", "*.autosave" ] 	)
+
+#---------------------------------------------------------
 # Copying PYTHON scripts
 #---------------------------------------------------------
 
 p("Python Scripts")
-copy(
-	"C:/Python36/Scripts/edScripts",
-	gitBackup + "Python Scripts/"
-	)
+copy("C:/Python36/Lib/site-packages/edtools", gitBackup + "Python Scripts/", ignoreFiles = [ "*.pyc" ] 	)
+copy("C:/Python36/Scripts/edScripts", gitBackup + "Python Scripts/", ignoreFiles = [ "*.pyc" ] 	)
+
 
 #---------------------------------------------------------
-# Copying PYTHON scripts
+# Copying Wordpress scripts
 #---------------------------------------------------------
 
 p("Wordpress Installator")
@@ -95,16 +101,20 @@ copy( "C:/xampp/htdocs/index.php","D:/_Diario/Codigo/Wordpress/Fast WP Copier on
 copy( "C:/xampp/htdocs/wp_creator.php","D:/_Diario/Codigo/Wordpress/Fast WP Copier on xampp/")
 
 
+
+
 #---------------------------------------------------------
 # Copying Maya Files
 #---------------------------------------------------------
 
 p("Maya")
+#copy( "C:/Users/Edwin/Documents/maya/scripts/userSetup.mel","D:/_Diario/Codigo/Python/Maya/scripts")
 copy(
-	"C:/Users/Edwin/Documents/maya/2020/prefs/scripts/edTools/",
+	"C:/Users/Edwin/Documents/maya/scripts/edToolsMaya/",
 	gitBackup + "Maya/scripts/",
 	ignoreFiles = [ "*.pyc" ] 
 	)
+
 
 
 input()

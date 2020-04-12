@@ -1,0 +1,205 @@
+#! C:/Program Files/Nuke11.1v1/nuke-11.1.1.dll -nx
+#write_info Write1 file:"C:/Users/Edwin/Desktop/final3.exr" format:"3840 2160 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 100" fps:"0" colorspace:"linear" datatype:"32 bit float" transfer:"unknown" views:"main" colorManagement:"Nuke"
+version 11.1 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1904" h="1001" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1241" stretch="1"/>
+            <splitter orientation="2">
+                <split size="559"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="394"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1" focus="true">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Nuke/chocolate.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Documents/maya/projects/default/images/masterLayer/rgb.exr
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ origset true
+ name Read3
+ xpos 436
+ ypos -84
+}
+set Nc1c80a80 [stack 0]
+Read {
+ inputs 0
+ file C:/Users/Edwin/Documents/maya/projects/default/images/masterLayer/chocolateVolumetricScene.exr
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ origset true
+ version 3
+ name Read4
+ xpos -29
+ ypos -145
+}
+set Nc1c80700 [stack 0]
+EXPTool {
+ blackpoint 0.012
+ red -0.07
+ green -0.07
+ blue -0.07
+ name Exposure1
+ xpos 310
+ ypos -70
+}
+set Nc1c80380 [stack 0]
+push $Nc1c80700
+Merge2 {
+ inputs 2+1
+ operation geometric
+ name Merge3
+ xpos 141
+ ypos -21
+}
+push $Nc1c80a80
+push $Nc1c80380
+Read {
+ inputs 0
+ file C:/Users/Edwin/Documents/maya/projects/default/images/masterLayer/chocolateVolumetricScene2.exr
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ origset true
+ version 5
+ name Read2
+ xpos -184
+ ypos -136
+}
+set Nc1c81c00 [stack 0]
+push $Nc1c80700
+Merge2 {
+ inputs 2
+ operation average
+ name Merge4
+ xpos -157
+ ypos 86
+ dope_sheet true
+}
+set Nc1c81880 [stack 0]
+Read {
+ inputs 0
+ file C:/Users/Edwin/Documents/maya/projects/default/images/masterLayer/chocolate.exr
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ origset true
+ name Read1
+ xpos -325
+ ypos 182
+}
+set Nc1c81180 [stack 0]
+Merge2 {
+ inputs 2
+ operation plus
+ name Merge1
+ xpos -95
+ ypos 249
+}
+set Nc1ced500 [stack 0]
+Merge2 {
+ inputs 2+1
+ operation plus
+ name Merge2
+ xpos 342
+ ypos 223
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Documents/maya/projects/default/images/masterLayer/rgb.exr
+ format "3840 2160 0 0 3840 2160 1 UHD_4K"
+ origset true
+ name Read5
+ xpos -422
+ ypos 206
+}
+push $Nc1c81180
+HSVTool {
+ srccolor 0.63
+ dstcolor 0.32
+ huesrcs {0 0}
+ huerotation 90
+ huerolloffrange 50
+ satsrcs {0 0.44}
+ satrolloffrange 0.3
+ brtsrcs {0.6299999952 0.6299999952}
+ brightness -0.53
+ brtrolloffrange 0.3
+ name HSVTool1
+ xpos -348
+ ypos 283
+}
+push $Nc1c81880
+push 0
+push 0
+push 0
+push 0
+push $Nc1c81c00
+push $Nc1c80700
+Merge2 {
+ inputs 2
+ operation exclusion
+ name Merge5
+ xpos -44
+ ypos 88
+ dope_sheet true
+}
+set Nc1cec700 [stack 0]
+push 0
+push $Nc1c80a80
+push $Nc1cec700
+ColorCorrect {
+ gain 0.51
+ highlights.gain 0.98
+ name ColorCorrect1
+ xpos -44
+ ypos 114
+}
+push $Nc1c81880
+Viewer {
+ inputs 10
+ frame_range 1-100
+ name Viewer1
+ xpos 431
+ ypos 108
+}
+push $Nc1ced500
+Write {
+ file C:/Users/Edwin/Desktop/final3.exr
+ colorspace linear
+ file_type exr
+ datatype "32 bit float"
+ version 6
+ name Write1
+ selected true
+ xpos -130
+ ypos 331
+}

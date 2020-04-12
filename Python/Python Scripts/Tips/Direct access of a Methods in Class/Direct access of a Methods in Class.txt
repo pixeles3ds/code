@@ -1,0 +1,80 @@
+Ways of exposing methods in a python module:
+
+-----------------------------------------------------------------------
+Module -> foo.py:
+-----------------------------------------------------------------------
+def module_method():
+    return "I am a module method"
+
+class ModClass:
+
+     @staticmethod
+     def static_method():
+         # the static method gets passed nothing, NO PUEDE LLAMAR NADA FUERA DE LA MISMA FUNCION, SOLO EJECUTAR SU CODIGO EL MISMO
+         return "I am a static method"
+
+     @classmethod
+     def class_method(cls):
+         # the class method gets passed the class (in this case ModCLass)
+         return "I am a class method"
+
+     def instance_method(self):
+         # An instance method gets passed the instance of ModClass
+         return "I am an instance method"
+
+
+
+
+-----------------------------------------------------------------------
+now, importing:
+-----------------------------------------------------------------------
+
+>>> import foo
+
+>>> foo.module_method()
+'I am a module method'
+
+>>> foo.ModClass.static_method()
+'I am a static method'
+
+>>> foo.ModClass.class_method()
+'I am a class method'
+
+>>> instance = ModClass()
+
+>>> instance.instance_method()
+'I am an instance method'
+
+
+-----------------------------------------------------------------------
+If you want to make class method more useful, import the class directly:
+-----------------------------------------------------------------------
+
+>>> from foo import ModClass
+
+>>> ModClass.class_method()
+'I am a class method'
+
+-----------------------------------------------------------------------
+You can also import ... as ... to make it more readable:
+-----------------------------------------------------------------------
+
+>>> from foo import ModClass as Foo
+
+>>> Foo.class_method()
+'I am a class method'
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Which ones you should use is somewhat a matter of taste. My personal rule of thumb is:
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Simple utility functions that generally act on things like collections, or perform some computation or fetch some resource should be module methods
+Functions related to a class but that do not require either a class or an instance should be static methods
+Functions that are related to a class, and will need the class for comparison, or to access class variable should be class methods.
+Functions that will act on an instance should be instance method.
+
+
+
+

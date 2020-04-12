@@ -1,0 +1,52 @@
+Whenever you want something to happen when your selection in Maya changes, the first thing that comes into your mind might be Maya ScriptJobs.
+However I find them very slow and not reliable, especially since they are wrapped in mel.
+
+Better use a callback from OpenMaya’s messaging system.
+
+This is how you do it:
+
+You will have to create a function that is called every time the selection changes. Make it run fast and with lots of error checking to avoid making your tool too slow.
+In your function, get the selection and evaluate what you want to do with it.
+The function could look something like this:
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+
+
+from maya import OpenMaya
+
+#function to execute when selection changes
+def maya_selection_changed(*args, **kwargs):
+    try:
+        sel = OpenMaya.MSelectionList()
+        OpenMaya.MGlobal.getActiveSelectionList(sel)
+
+        selection_iter = OpenMaya.MItSelectionList(sel)
+        obj = OpenMaya.MObject()
+        # Loop though iterator objects
+        while not selection_iter.isDone():
+            # Now we can do anything with each of selected objects.
+            # In this example lets just print path to iterating objects.
+            selection_iter.getDependNode(obj)
+            dagPath = OpenMaya.MDagPath.getAPathTo(obj)
+            print dir(dagPath)
+            print dagPath.fullPathName()
+            print dagPath.partialPathName()
+            #print dir(dagPath)
+            selection_iter.next()
+
+    except RuntimeError, err:
+        print err
+        
+        
+#create callback and store it in a variable
+selection_changed_callback = OpenMaya.MEventMessage.addEventCallback( "SelectionChanged", maya_selection_changed )
+
+
+#Remove callback again
+OpenMaya.MMessage.removeCallback(selection_changed_callback)

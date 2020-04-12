@@ -1,0 +1,39 @@
+
+Las variables globales se guardaran en el modulo (archivo.py) no en la clase que contiene la funcion que creó la variable global
+
+---------------------
+archivo.py
+---------------------
+
+b = " global will be stay here"
+
+class test:
+
+    b = "NO global"
+
+    @classmethod    
+    def set(self,data):
+        global b 
+        b=data
+    
+    @classmethod
+    def get(self):
+        global b
+        return b
+
+    def getInst(self):
+        global b
+        return b
+
+
+----------------------------------------
+para acceder a ella
+----------------------------------------
+
+import archivo 
+
+archivo.test.set()
+
+archivo.b			# Directamente a la clase
+archivo.test.get()  		# Si es una funcion de clase
+archivo.testInst().get()  	# Si es una funcion de Instancia 

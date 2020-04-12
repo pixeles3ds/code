@@ -1,0 +1,13 @@
+    
+Crear archivo userSetup.py si no existe en:
+    C:\Users\Edwin\Documents\maya\scripts
+    
+Anadir en userSetup.py:
+
+import maya.cmds as cmds
+import edTools.edTools as et
+e = et.ui() # Instancing edTools
+e.showUI() # Running UI
+
+
+Ya el escript queda cargado con el nombre de e

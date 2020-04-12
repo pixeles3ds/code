@@ -1,0 +1,42 @@
+import maya.api.OpenMaya as om
+import maya.cmds as cmds
+om.MEventMessage.getEventNames()
+
+class CallbackHandler(object):
+
+    def __init__(self, cb, fn):
+        self.callback = cb
+        self.function  = fn
+        self.id = None
+
+    def install(self):
+        if self.id:
+            print "callback is currently installed"
+            return False
+        self.id = om.MEventMessage.addEventCallback(self.callback, self.function)
+        return True
+
+    def uninstall(self):
+        if self.id:
+            om.MEventMessage.removeCallback(self.id)
+            self.id = None
+            return True
+        else:
+            print "callback not currently installed"
+            return False
+
+    def __del__(self):
+        self.uninstall()
+
+def test_fn(arg):
+    print "callback fired 2", arg
+
+cb = CallbackHandler('NameChanged', test_fn)
+cb.install()
+# callback is active
+cb.uninstall()
+# callback not active
+cb.install()
+# callback on again
+del(cb) # or cb = None
+# callback gone again

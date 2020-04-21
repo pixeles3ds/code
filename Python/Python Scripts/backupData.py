@@ -1,4 +1,5 @@
 import shutil
+import fnmatch
 import errno
 import os
 
@@ -17,7 +18,7 @@ To ignore files or folders:
 
 gitBackup = "D:/_Diario/codigo/Python/"
 
-def copy(src, dest, ignoreFiles = False ):
+def copy(src, dest, ignoreFiles = False, onlyFiles = False ):
 
 	def createFolder( name ):
 		if not os.path.exists( name ):
@@ -31,7 +32,36 @@ def copy(src, dest, ignoreFiles = False ):
 		if( path[-1:] == "/" ): return path[:-1]
 		else: return path
 
+	def include_patterns(*patterns):
+		""" Function that can be used as shutil.copytree() ignore parameter that
+		determines which files *not* to ignore, the inverse of "normal" usage.
 
+		This is a factory function that creates a function which can be used as a
+		callable for copytree()'s ignore argument, *not* ignoring files that match
+		any of the glob-style patterns provided.
+
+		"patterns" are a sequence of pattern strings used to identify the files to
+		include when copying the directory tree.
+
+		Example usage:
+
+			copytree(src_directory, dst_directory,
+					 ignore=include_patterns('*.sldasm', '*.sldprt'))
+		"""
+		def _ignore_patterns(path, all_names):
+			# Determine names which match one or more patterns (that shouldn't be
+			# ignored).
+			keep = (name for pattern in patterns
+							for name in fnmatch.filter(all_names, pattern))
+			# Ignore file names which *didn't* match any of the patterns given that
+			# aren't directory names.
+			dir_names = (name for name in all_names if os.path.isdir(os.path.join(path, name)))
+			return set(all_names) - set(keep) - set(dir_names)
+
+		return _ignore_patterns
+
+		
+		
 	# Delete '/' from folders path string
 	src = fixFolderPath(src)
 	dest = fixFolderPath(dest)
@@ -40,12 +70,17 @@ def copy(src, dest, ignoreFiles = False ):
 		folderName = os.path.basename( src )
 		dest = dest + "/" + folderName	
 		try:
+		
 			if os.path.exists(dest):
-				shutil.rmtree(dest)
-			if(ignoreFiles):
-				shutil.copytree(src, dest, ignore = shutil.ignore_patterns( *ignoreFiles ) )				
+				shutil.rmtree(dest)			
+				
+			if onlyFiles:
+				shutil.copytree(src, dest, ignore = include_patterns( *onlyFiles ) )
+			elif ignoreFiles:
+				shutil.copytree(src, dest, ignore = shutil.ignore_patterns( *ignoreFiles ) )			
 			else:
 				shutil.copytree(src, dest )
+				
 		except OSError as e:
 			# If the error was caused because the source wasn't a directory
 			if e.errno == errno.ENOTDIR:
@@ -82,6 +117,13 @@ copy(
 
 p("Nuke Scripts")
 copy("C:/Nuke/", "D:/_Diario/codigo/", ignoreFiles = [ "*.exr", "*.hdr", "*.nk~", "*.autosave" ] 	)
+
+#---------------------------------------------------------
+# FFMPEG Scripts
+#---------------------------------------------------------
+
+p("ffmpeg Scripts")
+copy("C:/ffmpeg/", gitBackup + "Python Scripts/", onlyFiles = [ "*.py","*.bat" ])
 
 #---------------------------------------------------------
 # Copying PYTHON scripts

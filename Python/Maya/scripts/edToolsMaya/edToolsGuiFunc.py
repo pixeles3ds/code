@@ -162,6 +162,7 @@ class uiFunc():
 
         Maya2CSS3D.createProject( pathFolder , html=htmlVal, js=jsVal)
         self.edCssDone(1)
+        edCore.alert2("Project Exported")
     
     @classmethod
     def msgCssInstruction(self,*args):
@@ -169,6 +170,8 @@ class uiFunc():
         msg += "1. Los objs deben estar en la RAIZ o agrupados por solo un grupo\n\n"
         msg += "2. El script exportara objetos juntos si estan agrupados, recibiran el nombre del grupo y tendran la misma textura\n\n"
         msg += "3. Solo exporta planos estaticos, no animaciones\n\n"
+        msg += "4. La escena debe estar mirando hacia el eje Z positivo\n\n"
+        msg += "3. Si las imagenes salen mal, arreglar las UV\n\n"
         return msg
 
     @classmethod
@@ -272,7 +275,7 @@ class uiFunc():
         cmds.connectAttr( shd + '.outColor', shdSG +'.surfaceShader' )
 
         #changing some attrs
-        cmds.setAttr( shd + '.base', 1.0 ) # No Specular
+        cmds.setAttr( shd + '.base', 0.9 ) # No Specular
         #cmds.setAttr( shd + '.specular', 0.0 ) # No Specular
 
         # Applying Shader to selections

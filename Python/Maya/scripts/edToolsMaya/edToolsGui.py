@@ -242,7 +242,7 @@ class layout():
         cmds.separator( height=8, style='none' )
 
         cmds.rowLayout( numberOfColumns=2, columnWidth2=(50, 40), adjustableColumn=1, columnAlign=(1, 'right'), columnAttach=[(1, 'left', 10), (2, 'both', 0)] )
-        cmds.textField( "edCssPathFolder", text="C:/CSS3DEngine/", bgc=[0.22,0.22,0.22], rfc = lambda *args : uiFunc.edCssDone(0) )
+        cmds.textField( "edCssPathFolder", text="C:/xampp/htdocs/CSS3DEngine/", bgc=[0.22,0.22,0.22], rfc = lambda *args : uiFunc.edCssDone(0) )
         cmds.iconTextButton( style='iconOnly', image1='openScript.png', al="center", label='Choose Folder', command=lambda *args : uiFunc.cssSetFolder("edCssPathFolder") )
         cmds.setParent("..") #rowLayout
 

@@ -1,0 +1,1 @@
+C:\solidangle\mtoadeploy\2019\bin\noice -i C:/Users/Edwin/Desktop/testInteriorSmall.exr -o C:/Users/Edwin/Desktop/testInteriorSmall_denoised.exr -ef 0 -sr 15 -pr 3 -v 0.5 

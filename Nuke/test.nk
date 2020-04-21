@@ -1,0 +1,182 @@
+#! C:/Program Files/Nuke11.1v1/nuke-11.1.1.dll -nx
+version 11.1 v1
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="3822" h="2063" screen="0">
+        <splitter orientation="1">
+            <split size="46"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="3153" stretch="1"/>
+            <splitter orientation="2">
+                <split size="1181"/>
+                <dock id="" activePageId="Viewer.1" focus="true">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="830"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Nuke/test.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/testACES/aces071_renderspace_raw.exr
+ format "480 270 0 0 480 270 1 "
+ origset true
+ name Read3
+ xpos -882
+ ypos 36
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/testACES/aces101_renderspace_acescg.exr
+ format "480 270 0 0 480 270 1 "
+ origset true
+ name Read4
+ xpos -795
+ ypos 45
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/testACES/aces103_renderspace_acescg.exr
+ format "480 270 0 0 480 270 1 "
+ origset true
+ name Read5
+ xpos -703
+ ypos 48
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/p3d60.jpg
+ format "480 270 0 0 480 270 1 "
+ origset true
+ colorspace linear
+ name Read8
+ xpos -1357
+ ypos 229
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/raw.png
+ format "480 270 0 0 480 270 1 "
+ origset true
+ colorspace linear
+ name Read6
+ xpos -1205
+ ypos -142
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/rec709.jpg
+ format "480 270 0 0 480 270 1 "
+ origset true
+ colorspace linear
+ name Read10
+ xpos -1426
+ ypos 74
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/p3dci.jpg
+ format "480 270 0 0 480 270 1 "
+ origset true
+ colorspace linear
+ name Read9
+ xpos -1165
+ ypos 135
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/testACES/aces011_renderspace_aces.exr
+ format "480 270 0 0 480 270 1 "
+ origset true
+ name Read2
+ xpos -602
+ ypos 44
+}
+OCIOCDLTransform {
+ inputs 0
+ working_space linear
+ version 2
+ name OCIOCDLTransform1
+ xpos -299
+ ypos 169
+}
+OCIODisplay {
+ colorspace linear
+ display default
+ view sRGB
+ name OCIODisplay1
+ xpos -299
+ ypos 195
+}
+OCIOFileTransform {
+ working_space linear
+ name OCIOFileTransform1
+ xpos -299
+ ypos 221
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/srgb.jpg
+ format "480 270 0 0 480 270 1 "
+ origset true
+ colorspace linear
+ name Read7
+ xpos -1170
+ ypos 254
+}
+Read {
+ inputs 0
+ file C:/Users/Edwin/Desktop/testACES/aces011_103_renderspace_raw.exr
+ format "480 270 0 0 480 270 1 "
+ origset true
+ name Read1
+ xpos -984
+ ypos 36
+}
+OCIOColorSpace {
+ in_colorspace linear
+ out_colorspace linear
+ name OCIOColorSpace1
+ xpos -984
+ ypos 217
+}
+set N93101180 [stack 0]
+push $N93101180
+Viewer {
+ inputs 2
+ frame 1
+ frame_range 1-100
+ viewerProcess None
+ translate {-0.06599999964 -0.6000000238}
+ name Viewer1
+ xpos -612
+ ypos 279
+}

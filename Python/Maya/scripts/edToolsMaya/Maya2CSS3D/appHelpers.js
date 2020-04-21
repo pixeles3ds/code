@@ -1,13 +1,6 @@
 var body = document.body,
     html = document.documentElement;
 
-var sombrero = document.getElementsByClassName( "sombrero1" )[0]
-
-
-sombrero.onclick = function() {
-	//calibrar();
-};
-
 
 function home(){
 	alert("hola");
@@ -386,14 +379,6 @@ function renderApp(){
 
 
 window.addEventListener('load', function(){
-
-
-
-	document.getElementsByClassName( "letrasP" )[0].style.backgroundImage = "none";
-	document.getElementsByClassName( "letrasG" )[0].style.backgroundImage = "none";
-	
-	document.getElementsByClassName( "letrasG" )[0].innerHTML = "Arriba Gold";
-	document.getElementsByClassName( "letrasP" )[0].innerHTML = "FINEST ECUADORIAN CHOCOLATE";
 
 
 	if( isMobile() ){

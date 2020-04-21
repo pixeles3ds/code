@@ -25,6 +25,11 @@ def confirm( msg):
 def alert( msg ):
     cmds.confirmDialog( title='EdTools', message='\n   %s     \n' % msg  )
 
+# Fancy Alert MSG
+def alert2( msg ):
+    cmds.inViewMessage( amg='<hl>'+msg+'</hl>', pos='midCenter', textOffset=50, fit=200, fot=300, fadeStayTime=800, textAlpha=1, fade=True )
+
+
 def showWarning( msg ):
     cmds.warning( msg )
 
@@ -338,18 +343,27 @@ class hotkeys:
         cmds.nameCommand( 'edContextToObjComponent', annotation='Context to Component Other Obj', command='manipMoveOrient 4;')
         cmds.nameCommand( 'edContextToObj', annotation='Context to oter Obj', sourceType="python", command=' python("edTools.hotkeys.contextObj2Obj()") ')
 
+        #----------------------------------
+        #   General WorkFLow
+        #----------------------------------
+        cmds.nameCommand( 'edShowNormals', annotation='Show Normals of Objects', command='setPolygonDisplaySettings("fNormal");')
 
-        #-----------------------------------------------------------------------
+
+        #-----------------------------------------------------------------------        
         #-----------------------------------------------------------------------
                 
-        cmds.hotkey( k='c', name='edCenterAllPivots' )
+        cmds.hotkey( k='c', name='edCenterAllPivots' )        
         cmds.hotkey( k='c', alt=True, name='edPivot2Obj' )
+
         cmds.hotkey( k='q', alt=True, name='edContextToSelfObject' )
         cmds.hotkey( k='w', alt=True, name='edContextToWorld' )
         cmds.hotkey( k='e', alt=True, name='edContextToCustom' )
         cmds.hotkey( k='r', alt=True, name='edContextToSelfComponent' )
         cmds.hotkey( k='d', alt=True, name='edContextToObjComponent' )
         cmds.hotkey( k='f', alt=True, name='edContextToObj' )
+
+        cmds.hotkey( k='n', name='edShowNormals' )
+
 
 
         #Saving hotKeys Preferences
@@ -652,7 +666,16 @@ class getters():
 
     # return the transform of all original shapes (geometry), without surfaceShape mesh nodes
     @classmethod
-  
+    def getGeometries(self):
+        list = []
+        for tr in self.getObjs("transform"):
+              
+            child = self.getShape(tr,full=1)
+            if child:
+              tipo = self.getType(child)
+              if tipo == "mesh":
+               list.append(tr)
+        return list
 
 
     # return all groups nodes, (transform) without shapes

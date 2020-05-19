@@ -13,13 +13,11 @@ function get_databases(){
 		die("Connection failed: " . $conn->connect_error);
 	} 
 
-	// Create database
-	//$sql = "SHOW DATABASES;";
 	$sql = "SHOW DATABASES";
 	$result = $conn->query($sql);
 
 	while($row = $result->fetch_row()) {
-	  print_r ($row[0]." <a href='/wp_creator.php?delete=".$row[0]."'>Delete</a><br>");
+	  print_r ($row[0]." <a href='/wp_creator.php?delete=".$row[0]."'>Del</a><br>");
 	}
 
 	$conn->close();	
@@ -144,6 +142,21 @@ a{
 	
 }
 
+a.delProj{
+	margin-right: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 11px;
+    background: #bb1212;
+    text-align: center;
+    border-radius: 50px;
+}
+
 </style>
 
 <form id="form" action="wp_creator.php" method="get" onsubmit="return validate(this);">
@@ -176,7 +189,10 @@ a{
 	{
 		if (is_dir($entry) && ($entry != '.') && ($entry != '..'))
 			if( $entry != "w498"){
-				echo "<li><a href='{$entry}'>{$entry}</a></li>";
+				echo "<li>";
+				echo "<a class='delProj' title='Delete' href='javascript:deleteProject(\"{$entry}\")'>-</a>";
+				echo "<a href='{$entry}'>{$entry}</a>";				
+				echo "</li>";
 			}
 	}	
 
@@ -197,4 +213,18 @@ function validate(form) {
     return true;
     
 }
+
+function deleteProject( folderName ){
+	
+	conf = confirm( "Desea elminar (" + folderName + ")?" );
+	if ( conf == true) {
+	  conf2 = confirm("ELIMINAR ("+folderName + ")!");
+	  if ( conf2 == true) {
+		window.location.replace("/wp_creator.php?deleteProject="+folderName);
+	  }
+	}
+
+}
+
+
 </script>

@@ -1,5 +1,11 @@
 <?php
 
+$wpFolder = 'w54/';
+
+//--------------------------------------------------
+// DATABASES
+//--------------------------------------------------
+
 function delete_database($dbname){
 	
 	$servername = "localhost";
@@ -66,6 +72,12 @@ function create_database($namefolder, $justDB = 0){
 	return $dbname;
 	
 }
+
+
+
+//--------------------------------------------------
+// FILESYSTEM
+//--------------------------------------------------
 
 function smartCopy($source, $dest, $options=array('folderPermission'=>0755,'filePermission'=>0755)){
     $result=false;
@@ -142,6 +154,53 @@ function changeData( $dbname, $foldername ){
 }
 
 
+function deleteProjectFolder( $path ){
+
+	// DELETE WORDPRESS DATABASE 
+	if( file_exists( $path."/wp-config.php")){
+
+		$search      = "DB_NAME";
+		$lines       = file( $path."/wp-config.php" );
+		$line_number = false;		
+
+		foreach ( $lines as $key => $line ) {		    
+		    $pos = strpos( $line, $search );		    
+		    if( $pos ){		    	
+				$resArray = explode("'", $line);
+				$dbName = $resArray[3];
+				delete_database($dbName);
+		    	break;
+		    }
+		}
+			
+	}
+	
+	//DELETE FOLDER
+	$files = glob( $path . '/{,.}*', GLOB_BRACE);
+	foreach ($files as $file) {
+		$fileName = explode("/", $file);
+		$fileName = $fileName[ count( $fileName ) - 1 ];		
+		if( $fileName != "." && $fileName != ".."){			
+			is_dir($file) ? deleteProjectFolder($file) : unlink($file);
+		}		
+	}
+	rmdir($path);	
+	return;
+}
+
+
+
+//--------------------------------------------------
+//		APP
+//--------------------------------------------------
+
+
+if( isset($_GET["deleteProject"]) ){
+	$folderName = $_GET["deleteProject"];
+	deleteProjectFolder( getcwd()."/".$folderName );
+	header("Location: /" );
+}
+
 
 if( isset($_GET["create"]) ){
 	$db = $_GET["create"];
@@ -174,7 +233,7 @@ if( isset($_GET["name"]) ){
 	echo "Copiado Wordpress...<br>";
 
 	// Copiando Wordpress folder	
-	smartCopy('w52/', $_GET["name"] );
+	smartCopy( $wpFolder, $_GET["name"] );
 
 	//Copiado Config file...
 	copy( $_GET["name"]."/wp-config-sample.php", $_GET["name"]."/wp-config.php" );

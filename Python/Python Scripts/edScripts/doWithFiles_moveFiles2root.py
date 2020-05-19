@@ -36,13 +36,10 @@ def do( fullPath, basePath, name, ext ):
 
 	currentPath = os.path.dirname(os.path.abspath(__file__)).replace("\\","/")+"/"	
 
-
-
-	if not basePath == currentPath:
-		if "render" in name:			
-			shutil.copy( fullPath, currentPath)			
-			#shutil.move(fullPath, currentPath ) 
-			print( name+"."+ext )
+	if not basePath == currentPath:				
+		shutil.move(fullPath, currentPath ) 
+		print( name+"."+ext )
+			
 
 
 try:

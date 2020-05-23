@@ -30,24 +30,18 @@ class Capacitaciones extends CI_Controller {
 
 	public function crear(){
 	
-		//$fecha = $this->input->post('fecha');
-		$fecha = "02/02/1992";
-		
-		$data = array();
+		$fecha = $this->input->post('fecha');
+				
+
 		$capacitacion = array();		
-
-		//$capacitacion["nombre"] = $this->input->post('nombre');
-		//$capacitacion["fecha"] = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
-		//$capacitacion["hora"] = $this->input->post('hora');
-		
-		$capacitacion["nombre"] = "asd";
+		$capacitacion["nombre"] = $this->input->post('nombre');
 		$capacitacion["fecha"] = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
-		$capacitacion["hora"] = "22:50";
+		$capacitacion["hora"] = $this->input->post('hora');
+		$capacitacion["cupos"] = $this->input->post('cupos');
+		$capacitacion["cupos_activos"] = 0;		
 
-		$data["capacitacion"] = $capacitacion;
-		$data["cupos"] = "5";
+		$this->capacitaciones_model->crear( $capacitacion );
 
-		$this->capacitaciones_model->crear($data);
 		
 		redirect('./capacitaciones', 'refresh');
 

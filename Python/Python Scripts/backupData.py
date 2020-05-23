@@ -140,8 +140,10 @@ copy("C:/Python36/Scripts/edScripts", gitBackup + "Python Scripts/", ignoreFiles
 
 p("CodeIgniter App")
 copy( "C:/xampp/htdocs/ciDoth/","D:/_Diario/Portfolio/PHP/codeigniter/")
+
 copy( "C:/xampp/htdocs/ciDoth/application","D:/_Diario/Codigo/php/codeigniter/")
 copy( "C:/xampp/htdocs/ciDoth/DB.sql","D:/_Diario/Codigo/php/codeigniter/")
+copy( "C:/xampp/htdocs/ciDoth/ci-installer.php","D:/_Diario/Codigo/php/codeigniter/")
 
 
 #---------------------------------------------------------

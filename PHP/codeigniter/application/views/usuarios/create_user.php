@@ -1,3 +1,13 @@
+<?php
+  $message = preg_replace("/\s+/", " ", $message );
+?>
+
+<?php
+if($message){
+  echo '<div class="errormsg">'.$message.'</div>';
+}
+?>
+
 <?php echo form_open("usuarios/create_user");?>
 	
 	<div class="row">

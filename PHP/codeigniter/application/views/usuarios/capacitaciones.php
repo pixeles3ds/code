@@ -215,27 +215,13 @@
 						<span class="txtCupos"><strong>
 					<?php
 
-				 	if ( $val->idUserCap == "" ){
-
-						if( $val->cupos == 1){
+						if( $val->cupos == 0){
+				 			echo " Sin Cupos";
+				 		}else if( $val->cupos == 1){
 				 			echo $val->cupos." Cupo";
 				 		}else{
 							echo $val->cupos." Cupos ";
 				 		}
-
-				 	}else{
-
-				 		if( $rol == 1){
-
-							if( $val->cupos == 1){
-					 			echo $val->cupos." Cupo";
-					 		}else{
-								echo $val->cupos." Cupos ";
-					 		}
-
-				 		}
-
-				 	}
 					 	
 
 					?>
@@ -246,10 +232,16 @@
 				</div>
 				<div class="media-right">
 
-					<?php if ( $val->idUserCap == "" ){ if( $val->cupos == 0){ echo '
-					<button type="button" class="btn btn-primary oculto">Inscribir</button>'; }else{ echo '
-					<button type="button" class="btn btn-primary" onclick="inscribir('.$val->id.')">Inscribir</button>'; } }else{ echo '
-					<button type="button" class="btn btn-danger" onclick="baja('.$val->id.')">Eliminar</button>'; } ?>
+				<?php
+					if ( $val->activo ){ 
+						echo '<button type="button" class="btn btn-danger" onclick="baja('.$val->id.')">Eliminar</button>';
+					}else{
+						if( $val->cupos == 0){ 
+							echo '<button type="button" class="btn btn-primary oculto">Inscribir</button>';
+						}else{
+							echo '<button type="button" class="btn btn-primary" onclick="inscribir('.$val->id.')">Inscribir</button>';
+						}
+					}?>
 
 				</div>
 			</div>

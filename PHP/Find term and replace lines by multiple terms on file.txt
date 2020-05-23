@@ -1,0 +1,40 @@
+function findAndReplaceLine( $find, $file ){
+
+	
+	if( file_exists( $file )){
+
+		$file_lines  = file( $file );					
+
+		foreach ( $file_lines as $key => $line ) {				
+
+			foreach ( $find as $findTerm => $lineReplace ) {					
+
+			    $exist = strpos( $line, $findTerm );
+			    if( $exist ){		    						
+					
+					// Replace term in file
+					$file_lines[$key] = $lineReplace."\n";
+					//Delete term from list of terms
+					unset($find[ $findTerm ]); 
+
+			    	break;
+			    }
+			}
+
+			// if no more term to find, exit
+			if( !count($find) ) break;			
+
+		}
+
+		file_put_contents( $file, $file_lines );
+			
+	}
+
+}
+
+$data = array();				
+$data["'hostname'"] = "	'hostname' => '$servername',";
+$data["'username'"] = "	'username' => '$username',";
+$data["'password'"] = "	'password' => '$password',";
+$data["'database'"] = "	'database' => '$dbname',";
+findAndReplaceLine( $data, $fullPath );

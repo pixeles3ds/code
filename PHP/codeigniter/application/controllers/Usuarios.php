@@ -403,13 +403,13 @@ class Usuarios extends CI_Controller {
         }
         $this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim');
         $this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'trim');
-        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
         if ($this->form_validation->run() == true)
         {
             $email    = strtolower($this->input->post('email'));
-            $identity = ($identity_column==='email') ? $email : $this->input->post('identity');
+            $identity = $email;
             $password = $this->input->post('password');
 
             $additional_data = array(
@@ -429,9 +429,7 @@ class Usuarios extends CI_Controller {
             $this->session->set_flashdata('message', $this->ion_auth->messages());
             redirect("./usuarios/", 'refresh');
 
-        }
-        else
-        {
+        }else{
             // display the create user form
             // set the flash data error message if there is one
             $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
@@ -567,7 +565,7 @@ class Usuarios extends CI_Controller {
     }
 
 	function delete_user($id){
-		$this->ion_auth->remove_user($id);
+		$this->ion_auth->delete_user($id);
 		redirect("./usuarios","refresh");
 	}
 
@@ -646,7 +644,8 @@ class Usuarios extends CI_Controller {
 				    $this->session->set_flashdata('message', $this->ion_auth->messages() );
 				    if ($this->ion_auth->is_admin())
 					{
-						redirect('auth', 'refresh');
+						$this->session->set_flashdata('message', $this->ion_auth->messages());
+            			redirect("./usuarios/", 'refresh');
 					}
 					else
 					{
@@ -660,7 +659,8 @@ class Usuarios extends CI_Controller {
 				    $this->session->set_flashdata('message', $this->ion_auth->errors() );
 				    if ($this->ion_auth->is_admin())
 					{
-						redirect('auth', 'refresh');
+						$this->session->set_flashdata('message', $this->ion_auth->messages());
+            			redirect("./usuarios/", 'refresh');
 					}
 					else
 					{

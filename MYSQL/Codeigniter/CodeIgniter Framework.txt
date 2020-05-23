@@ -1,0 +1,60 @@
+
+
+//----------------------------------------------
+// Queries
+//----------------------------------------------
+
+
+// Consultas Complejas
+$this->db->query($sql)->result();
+
+
+// Tabla completa
+$this->db->get('users')->result();
+
+
+// Un datos
+$this->db->query( $sql )->row()->nombre_columna;
+
+// Una fila
+$this->db->query( $sql )->row();
+
+
+
+//----------------------------------------------
+// Create
+//----------------------------------------------
+
+$capacitacion = array();		
+
+$capacitacion["nombre"] = $this->input->post('nombre');
+$capacitacion["fecha"] = DateTime::createFromFormat('d/m/Y', $fecha)->format('Y-m-d');
+$capacitacion["hora"] = $this->input->post('hora');
+$capacitacion["cupos"] = $this->input->post('cupos');
+$capacitacion["cupos_activos"] = 0;	
+
+$this->db->insert('capacitaciones', $data );
+$id = $this->db->insert_id();	
+
+
+
+
+
+//---------------------------------------------------------
+// Update
+//---------------------------------------------------------
+
+$columns = array(
+	'nombre_columna' => $valor
+);
+
+$this->db->where('id', $id);
+$this->db->update('tabla', $columns); 
+
+
+//---------------------------------------------------------
+// Delete
+//---------------------------------------------------------
+
+$this->db->where(" capacitacion_id = $id AND usuario_id = $user ");
+$this->db->delete('capacitaciones_usuarios'); 

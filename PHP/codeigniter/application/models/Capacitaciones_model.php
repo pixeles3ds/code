@@ -8,21 +8,11 @@ class Capacitaciones_model extends CI_Model{
 		$this->load->database();
 	}
 	
-	public function crear($data){
+	public function crear( $data ){
 
 		// Insertamos en tabla capacitacion
-		$this->db->insert('capacitaciones', $data["capacitacion"]);
-		$id = $this->db->insert_id();
-
-		
-
-		$data_cupos= array(
-			'capacitacion_id' => $id,
-			'cupos' => $data["cupos"]
-		);
-
-		// Insertamos los cupos de la capacitacion
-		$this->db->insert('capacitaciones_stock', $data_cupos );
+		$this->db->insert('capacitaciones', $data );
+		$id = $this->db->insert_id();	
 
 	}
 
@@ -31,10 +21,23 @@ class Capacitaciones_model extends CI_Model{
 
 		$sql = "
 
-			SELECT c.*, cs.cupos, cu.id AS idUserCap
-			FROM capacitaciones c
-			LEFT JOIN capacitaciones_usuarios cu ON (c.id = cu.capacitacion_id AND cu.usuario_id = $id)
-			LEFT JOIN capacitaciones_stock cs ON c.id = cs.capacitacion_id 
+			SELECT 
+				c.id as id,
+				c.nombre as nombre,
+				c.fecha as fecha,
+				c.hora as hora,
+				#c.cupos as total_cupos,
+				IF( cu_count.total IS NULL, c.cupos, c.cupos - cu_count.total ) as cupos,
+				IF( cu.id IS NULL,0,1) AS activo
+			FROM capacitaciones  c
+			LEFT JOIN capacitaciones_usuarios cu ON ( c.id = cu.capacitacion_id AND cu.usuario_id = $id )
+			LEFT JOIN (
+				SELECT
+				DISTINCT(capacitacion_id) as id,
+				COUNT(capacitacion_id ) as total
+				FROM capacitaciones_usuarios
+				GROUP BY capacitacion_id
+			) cu_count ON c.id = cu_count.id 
 
 		";
 
@@ -44,48 +47,57 @@ class Capacitaciones_model extends CI_Model{
 
 	public function inscribir($id, $user){
 
-		//valor actual cupos
-		$cupo = $this->db->query( " SELECT cupos FROM capacitaciones_stock WHERE capacitacion_id = $id ")->row()->cupos;
-		$cupo = $cupo - 1;
+		//---------------------------------------------------------
+		// Obtener valor actual del stock de cupos_activos y sumamos 1
+		//---------------------------------------------------------
+		$cupo = $this->db->query( " SELECT cupos_activos FROM capacitaciones WHERE id = $id ")->row()->cupos_activos;
+		$cupo = $cupo + 1;
 
 
-		// cambiamos el cupo
+		//---------------------------------------------------------
+		// Actualizamos el stock de capacitaciones->cupos_activos
+		//---------------------------------------------------------
 		$stock = array(
-			'cupos' => $cupo
+			'cupos_activos' => $cupo
 		);
 
-		$this->db->where('capacitacion_id', $id);
-		$this->db->update('capacitaciones_stock', $stock); 
+		$this->db->where('id', $id);
+		$this->db->update('capacitaciones', $stock); 
 
-
-		// añadimos la supscripcion
+		//---------------------------------------------------------
+		// Agregamos la supscripcion en (capacitaciones_usuarios)
+		//---------------------------------------------------------
 		$data = array(
 			'capacitacion_id' => $id,
 			'usuario_id' => $user
 		);
-
-		// Insertamos los cupos de la capacitacion
 		$this->db->insert('capacitaciones_usuarios', $data );
 
 	}
 
 	public function eliminarSub($id, $user){
 
-		//valor actual cupos
-		$cupo = $this->db->query( " SELECT cupos FROM capacitaciones_stock WHERE capacitacion_id = $id ")->row()->cupos;
-		$cupo = $cupo + 1;
+		//---------------------------------------------------------
+		// Obtener valor actual del stock de cupos_activos y restamos 1
+		//---------------------------------------------------------
+		$cupo = $this->db->query( " SELECT cupos_activos FROM capacitaciones WHERE id = $id ")->row()->cupos_activos;
+		$cupo = $cupo - 1;
 
 
-		// cambiamos el cupo
+		//---------------------------------------------------------
+		// Actualizamos el stock de capacitaciones->cupos_activos
+		//---------------------------------------------------------
 		$stock = array(
-			'cupos' => $cupo
+			'cupos_activos' => $cupo
 		);
 
-		$this->db->where('capacitacion_id', $id);
-		$this->db->update('capacitaciones_stock', $stock); 
+		$this->db->where('id', $id);
+		$this->db->update('capacitaciones', $stock); 
 
 
-		// añadimos la supscripcion
+		//---------------------------------------------------------
+		// Eliminamos la supscripcion en (capacitaciones_usuarios)
+		//---------------------------------------------------------
 		$data = array(
 			'capacitacion_id' => $id,
 			'usuario_id' => $user

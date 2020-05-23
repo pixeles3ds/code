@@ -32,7 +32,7 @@ class Auth extends CI_Controller
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
 		}
-		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		else if ( !$this->ion_auth->is_admin() ) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
 			show_error('You must be an administrator to view this page.');
@@ -55,7 +55,8 @@ class Auth extends CI_Controller
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			//$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			redirect('/', 'refresh');
 		}
 	}
 
@@ -100,7 +101,7 @@ class Auth extends CI_Controller
 		}else{			
 			
 			$this->data["message"] = $this->session->flashdata('message');					
-						
+
 			$this->template->view('ajax','prueba/login', $this->data );			
 
 		}	

@@ -154,6 +154,8 @@ p("Wordpress Installator")
 copy( "C:/xampp/htdocs/index.php","D:/_Diario/Codigo/Wordpress/Fast WP Copier on xampp/")
 copy( "C:/xampp/htdocs/wp_creator.php","D:/_Diario/Codigo/Wordpress/Fast WP Copier on xampp/")
 
+copy( "C:/xampp/htdocs/wp-print-installer/wp-content/plugins/coode-price-calculator","D:/_Diario/Codigo/Wordpress/Plugins/")
+copy( "C:/xampp/htdocs/wp-print-installer/wp-content/plugins/scuart-tools","D:/_Diario/Codigo/Wordpress/Plugins/")
 
 
 

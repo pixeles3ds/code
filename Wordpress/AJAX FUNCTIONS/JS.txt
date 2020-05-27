@@ -1,0 +1,10 @@
+(function($){
+
+data = { action: 'foo', avalue: 'some value', 'anothervalue': 'another value' };
+
+jQuery.post(ajaxurl, data, function(response){
+	data = JSON.parse(response);
+	alert(response);
+});
+
+})(jQuery);

@@ -3,7 +3,7 @@ var body = document.body,
 
 
 function home(){
-	alert("hola");
+	console.log("hola");
 }
 
 function p(data){
@@ -441,6 +441,7 @@ window.addEventListener('load', function(){
 
 				showScene(); // Mostramos Escenarios
 				setInitPos(); // Animaciones FadeIn								
+				startAnimation();
 				engine.startRender();
 
 			}
@@ -448,13 +449,6 @@ window.addEventListener('load', function(){
 		}
 
 	}else{
-
-		/*
-		test = camY + "   " + camX + "</br>";
-		document.getElementById( "test" ).innerHTML = test;
-		//document.getElementsByClassName( "outer" )[0].style.height = height+"px";
-		*/
-
 
 		app.startApp = function(){
 

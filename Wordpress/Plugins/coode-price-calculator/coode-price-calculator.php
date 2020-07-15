@@ -26,6 +26,21 @@ if ( !function_exists( 'add_action' ) ) {
 
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
+// Print Objects
+function pr($msg){
+    echo "<br><pre>";
+    print_r($msg);
+    echo "</pre><br>";
+}
+
+// Print Objects
+function prd($msg){
+    echo "<br><pre>";
+    print_r($msg);
+    echo "</pre><br>";
+    wp_die();
+}
+
 
 function coode_pc_create_table_product(){
     global  $wpdb;

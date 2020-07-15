@@ -39,8 +39,11 @@ class PriceCalculator{
     private function filterProductByAttr($products, $data){
         foreach($products as $product){
             $attribute = $this->filterAttributeField($product['attribute']);
+
+            if( $product['attribute'] == "")
+                return $product;
             
-            if ( isset($data[$attribute]) && strtolower($data[$attribute]) == strtolower($product['value']))
+            if ( isset($data[$attribute]) && trim(strtolower($data[$attribute])) == trim(strtolower($product['value'])))
                 return $product;
             
         }
@@ -48,36 +51,57 @@ class PriceCalculator{
     }
     
     public function update_price(){
+
         $dataStr = $_POST['data'];
         parse_str($dataStr, $data);
 
-
+        // Get all the filters for a product
         $products = Product::getById($data['product_id']);
 
-        //$filterClassName = $this->getDbFilter($products, $data);
-        $product = $this->filterProductByAttr($products, $data);
-        
-        if ($product){
-            $filterClassName = 'Filter' . $product['filter'];
-            $calculator = new $filterClassName();
-            $filter = Filter::get($calculator->source, $product['filter_id']);
-            $filter = $filter[0];
-            $price = ($filter) ? $calculator->getPrice($filter, $data) : 0;
-        } else {
-            $price = 0;
-        }
-        
-        $coode_result = [
+        // Si hay algun filtro creado
+        if( $products ){       
+
+            //$filterClassName = $this->getDbFilter($products, $data);
+            $product = $this->filterProductByAttr($products, $data); // retorna los filtros creados para un valor de un atributo
+
+            
+            if ($product){
+                $filterClassName = 'Filter' . $product['filter'];
+                $calculator = new $filterClassName();
+                $filter = Filter::get( $calculator->source, $product['filter_id'] );
+                $filter = $filter[0];            
+
+                $price = ($filter) ? $calculator->getPrice($filter, $data) : 0;
+            } else {
+                $price = 0;
+            }
+            
+
+            $coode_result = [
                 'label_html'    => $price,
                 'result'        => 'success',
                 'display'       => true,
             ];
+            
+
+        }else{
+            // Si no hay filtros desactivar el autoupdate del plugin(custom fields), y seguir el flujo normal
+            $coode_result = [
+                'label_html'    => $price,
+                'result'        => 'success',
+                'display'       => false,
+            ];
+        }
+
         echo json_encode( $coode_result );
         wp_die();
+
     }
     
     
     public function custom_price_to_cart_item($cart_object){
+
+
         if( !WC()->session->__isset( "reload_checkout" )) {
             foreach ( $cart_object->cart_contents as $key => $value ) {
                 //for woocommerce version lower than 3
@@ -87,7 +111,7 @@ class PriceCalculator{
                 $metadata = $value;
                 $product_id = $metadata['product_id'];
 
-                $product = wc_get_product($product_id);
+                $product = wc_get_product($product_id);                
 
                 // Unable to load product
                 if (!$product) 
@@ -98,21 +122,29 @@ class PriceCalculator{
 
                 $data = $metadata['variation'];
                 $data['product_id'] = $product_id;
+
+
                 
                 $products = Product::getById($data['product_id']);
-                $product = $this->filterProductByAttr($products, $data);
+                if( $products ){
 
-                if ($product){
-                    $filterClassName = 'Filter' . $product['filter'];
-                    $calculator = new $filterClassName();
-                    $filterRow = Filter::get($calculator->source, $product['filter_id']);
-                    
-                    $filterRow = $filterRow[0];
-                    //throw new Exception (json_encode($filterRow), 1);
-                    $price = (isset($filterRow)) ? $calculator->getPrice($filterRow, $data) : 0;
-                    $value['data']->set_price($price);
-                } else {
-                    throw new Exception('Not product filtered', 1);
+                    $product = $this->filterProductByAttr($products, $data);
+
+                    if ($product){
+                        $filterClassName = 'Filter' . $product['filter'];
+                        $calculator = new $filterClassName();
+                        $filterRow = Filter::get($calculator->source, $product['filter_id']);
+                        
+                        $filterRow = $filterRow[0];
+                        //throw new Exception (json_encode($filterRow), 1);
+                        $price = (isset($filterRow)) ? $calculator->getPrice($filterRow, $data) : 0;
+                        $value['data']->set_price($price);
+                    } else {
+                        throw new Exception('Not product filtered', 1);
+                    }
+
+                }else{ //Producto sin filtros
+
                 }
                         
             }

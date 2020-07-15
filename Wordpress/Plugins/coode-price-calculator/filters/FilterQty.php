@@ -51,7 +51,7 @@ class FilterQty extends AbstractFilter{
             return 'a3000';
 
         if ($value <=4000)
-            return 'a';
+            return 'a4000';
 
         if ($value <=5000)
             return 'a5000';

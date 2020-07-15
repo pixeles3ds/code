@@ -109,6 +109,7 @@ class PriceFilterView{
                                 foreach($rows as $row) {
                                     $product = wc_get_product($row['product_id']);
                                     $labels = PriceFilter::getFiltersLabel();
+                                    if( $product ){
                             ?>
                                 <tr id="uid_<?php echo $row['id']?>">
                                   <th scope="row"><?php echo $row['id']?></th>
@@ -119,7 +120,7 @@ class PriceFilterView{
                                   <td><?php echo self::semiPrettyArrayView($row['filter_values']) ?></td>
                                   <td><button class="deleteFilter btn btn-dark" data-toggle="tooltip" data-placement="top" title="Delete" data-product="<?php echo $row['id'] ?>">x</button></td>
                                 </tr>
-                            <?php } ?>
+                            <?php } } ?>
                           </tbody>
                         </table>                         
                     </div>

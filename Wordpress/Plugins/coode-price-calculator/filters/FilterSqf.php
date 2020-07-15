@@ -62,7 +62,7 @@ class FilterSqf extends AbstractFilter{
         
         $filtredPrice = substr($product[$property], 1);
         
-        return $filtredPrice * $prod;
+        return $filtredPrice * $prod;        
         
     }
  

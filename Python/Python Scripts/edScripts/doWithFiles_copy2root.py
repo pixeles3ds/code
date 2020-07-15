@@ -48,6 +48,6 @@ def do( fullPath, basePath, name, ext ):
 try:
 	getFilesAndDo()
 except BaseException as e:    
-    print e
+    print(e)
 
 input("\n\n\nDone!!!\n\n\n")

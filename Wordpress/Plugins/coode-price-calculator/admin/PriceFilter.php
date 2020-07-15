@@ -132,11 +132,22 @@ class PriceFilter {
     public function process_new_filter(){
         $params = array();
         parse_str($_POST['data'], $params);
+
         
         $formProduct = $params['Product'];
         $formFilter = $params['Filter'];
-        
+
+        /*        
         if ( !$formProduct || !$formFilter || !$formProduct['id'] || !$formProduct['attribute'] || !$formProduct['attribute_value'] ){
+            echo json_encode([ 
+                'msg' => 'El formulario tiene campos incompletos', 
+                'status' => 'danger'
+            ]);
+            wp_die();
+        }
+        */
+
+        if ( !$formProduct || !$formFilter || !$formProduct['id'] ){
             echo json_encode([ 
                 'msg' => 'El formulario tiene campos incompletos', 
                 'status' => 'danger'
@@ -156,8 +167,8 @@ class PriceFilter {
 
         
         $filter = new $filterClassName();
-        $toSave = $filter->prepareDataToSave($formFilter);
-        
+        $toSave = $filter->prepareDataToSave($formFilter);                
+
         $result = Filter::add($filter->source, $toSave);
         
         if ($result === false){
@@ -168,6 +179,11 @@ class PriceFilter {
             wp_die();
         }
         
+        if( !array_key_exists("attribute",$formProduct) ){
+            $formProduct['attribute'] = "";
+            $formProduct['attribute_value'] = "";
+        }
+
         
         $product = [];
         $product['product_id'] = $formProduct['id'];

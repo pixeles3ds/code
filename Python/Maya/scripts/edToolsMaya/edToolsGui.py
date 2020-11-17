@@ -138,7 +138,7 @@ class layout():
 
         #================================================================
         cmds.frameLayout( label='Normals/Bump', **frameArgs)   
-        cmds.rowLayout( numberOfColumns=2, columnWidth2=( 60,50 ), adjustableColumn=2, columnAlign=(1, 'right'), columnAttach=[1,"both",5] )                
+        cmds.rowLayout( numberOfColumns=2, columnWidth2=( 70,50 ), adjustableColumn=2, columnAlign=(1, 'right'), columnAttach=[1,"both",5] )                
 
         cmds.columnLayout(adjustableColumn=True)       
         cmds.radioCollection( "edShadingNormalsOrder" )
@@ -156,8 +156,8 @@ class layout():
         cmds.setParent("..") # RowLayout
 
         cmds.columnLayout(adjustableColumn=True)       
-        cmds.floatSliderGrp( "edShadingNormalVal", label='Normal:  ', field=True, columnWidth3=( 60, 60, 50 ), minValue=0, maxValue=5, value = 1, adjustableColumn = 3, sliderStep = 0.005, precision = 3 )
-        cmds.floatSliderGrp( "edShadingBumpVal", label='Bump:  ', field=True, columnWidth3=( 60, 60, 50 ), minValue=-1, maxValue=1, value = 0.1, adjustableColumn = 3, sliderStep = 0.005, precision = 3 )
+        cmds.floatSliderGrp( "edShadingNormalVal", label='Normal:  ', field=True, columnWidth3=( 70, 60, 50 ), minValue=0, maxValue=5, value = 1, adjustableColumn = 3, sliderStep = 0.005, precision = 3 )
+        cmds.floatSliderGrp( "edShadingBumpVal", label='Bump:  ', field=True, columnWidth3=( 70, 60, 50 ), minValue=-1, maxValue=1, value = 0.1, adjustableColumn = 3, sliderStep = 0.005, precision = 3 )
         cmds.setParent("..")  
 
         cmds.setParent("..") # FrameLayout
@@ -167,13 +167,15 @@ class layout():
         #================================================================
         cmds.frameLayout( label='Displacement', **frameArgs)   
 
-        cmds.rowLayout( numberOfColumns=2, columnWidth2=( 60, 5 ), adjustableColumn=2, columnAlign2=['right','left'], columnAttach = [2,"left", 4]  )                            
-        cmds.button(l=" Sel Shape ", c = lambda *x: uiFunc.selectShapes() )
+        cmds.rowLayout( numberOfColumns=2, columnWidth2=( 70, 5 ), adjustableColumn=2, columnAlign2=['right','left'], columnAttach = [2,"left", 4]  )                            
+        cmds.button(l=" Sel Shape ", c = lambda *x: uiFunc.selectShapes() )        
         cmds.text("edShadingShapeSelected", l="..." )
-        cmds.setParent("..")
+        cmds.setParent("..")        
+        
+        
 
-        cmds.rowLayout( numberOfColumns=3, columnWidth3=( 60, 45,60 ), adjustableColumn=3, columnAlign3=['right','left','left'], columnAttach = [2,"left", 4]  )
-        cmds.text("")        
+        cmds.rowLayout( numberOfColumns=3, columnWidth3=( 70, 45,60 ), adjustableColumn=3, columnAlign3=['right','left','left'], columnAttach = [2,"left", 4]  )
+        cmds.button(l="Shape List ", c = lambda *x: uiFunc.showShapesDisplacementSheet() )
         cmds.radioCollection( "edShadingShapesChange" )
         cmds.radioButton( 'edShadinAllShapes', label = 'All', select = True, onCommand = lambda *x: uiFunc.changeShapesSelection("all") )        
         cmds.radioButton( 'edShadinOnlySelectedShape', label = 'Selected', onCommand = lambda *x: uiFunc.changeShapesSelection("selected") )        
@@ -182,13 +184,13 @@ class layout():
         #--------------------------------------------------            
         cmds.columnLayout( adjustableColumn = True )        
 
-        cmds.optionMenuGrp("edShadingSubdivisionType", label='DivType:  ', columnWidth2=(60, 10), adjustableColumn=2, columnAttach = [1,"right", 0]  )
+        cmds.optionMenuGrp("edShadingSubdivisionType", label='DivType:  ', columnWidth2=(70, 10), adjustableColumn=2, columnAttach = [1,"right", 0]  )
         cmds.menuItem( "edShadingSubTypeNone", label='None' )
         cmds.menuItem( "edShadingSubTypeNoneCatclark", label='Catclark' )
         cmds.menuItem( "edShadingSubTypeNoneLinear", label='Linear' )
-        cmds.intSliderGrp( "edShadingDivisionsCount", label='Iterations:  ', field=True, columnWidth3=( 60, 60, 50 ), minValue=0, maxValue=8, value = 0, adjustableColumn = 3 )        
-        cmds.floatSliderGrp( "edShadingDisplacementHeight", label='Height:  ', field=True, columnWidth3=( 60, 60, 50 ), minValue=-5, maxValue=5, value = 1, adjustableColumn = 3, sliderStep = 0.005, precision = 3 )
-        cmds.checkBoxGrp( "edShadingAutoBumpDisp", numberOfCheckBoxes=1, label='AutoBump:  ', value1=False, columnWidth2=(60, 10), adjustableColumn = 2, columnAttach = [2,"left", 2]  )
+        cmds.intSliderGrp( "edShadingDivisionsCount", label='Iterations:  ', field=True, columnWidth3=( 70, 60, 50 ), minValue=0, maxValue=8, value = 0, adjustableColumn = 3 )        
+        cmds.floatSliderGrp( "edShadingDisplacementHeight", label='Height:  ', field=True, columnWidth3=( 70, 60, 50 ), minValue=-5, maxValue=5, value = 1, adjustableColumn = 3, sliderStep = 0.005, precision = 3 )
+        cmds.checkBoxGrp( "edShadingAutoBumpDisp", numberOfCheckBoxes=1, label='AutoBump:  ', value1=False, columnWidth2=(70, 10), adjustableColumn = 2, columnAttach = [2,"left", 2]  )
 
         cmds.setParent("..")                
         #--------------------------------------------------
@@ -197,7 +199,7 @@ class layout():
 
 
         cmds.frameLayout( label='Ambient Oclussion', **frameArgs)   
-        cmds.floatSliderButtonGrp( "edShadingAOMultiply", label='Multiply:  ', field=True, columnAttach = [4,"left", 10], columnWidth4=( 60, 60, 50, 60 ), minValue=0, maxValue=2, value = 1, adjustableColumn = 3, sliderStep = 0.005, precision = 3, buttonLabel='Sel AO', bc = lambda *x: uiFunc.selectAO() )
+        cmds.floatSliderButtonGrp( "edShadingAOMultiply", label='Multiply:  ', field=True, columnAttach = [4,"left", 10], columnWidth4=( 70, 60, 50, 60 ), minValue=0, maxValue=2, value = 1, adjustableColumn = 3, sliderStep = 0.005, precision = 3, buttonLabel='Sel AO', bc = lambda *x: uiFunc.selectAO() )
         cmds.setParent("..")
         #================================================================
 

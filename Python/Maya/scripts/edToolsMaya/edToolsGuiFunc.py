@@ -325,6 +325,23 @@ class uiFunc():
 
 
     @classmethod
+    def showShapesDisplacementSheet( self):
+        shaderSelected = edCore.edToolsShadingSelectedAI
+
+        if shaderSelected:
+            shapes = edCore.getters.getShapesByMaterial( shaderSelected )
+            cmds.select( shapes, visible=True )
+
+            #Show Window
+            window = cmds.window( shaderSelected, widthHeight=(1000, 800) )
+            cmds.paneLayout()
+            activeList = cmds.selectionConnection( activeList=True )
+            cmds.spreadSheetEditor( mainListConnection=activeList, selectedAttr=True, keyableOnly=False, fixedAttrList=[ 'aiSubdivType', 'aiDispHeight', 'aiSubdivIterations', 'aiDispAutobump', 'customDisplacement'] )
+            cmds.showWindow( window )
+                
+
+
+    @classmethod
     def changeShapesSelection( self, type):
 
         shaderSelected = edCore.edToolsShadingSelectedAI
@@ -346,6 +363,16 @@ class uiFunc():
                             material = edCore.getters.getMaterial( shape )
                             if "aiStandardSurface" == edCore.getters.getType(  material ):
                                 listShapes.append( shape )
+
+                                # Add custom attribute if not exist to separate it from others shapes                                
+                                shape = edCore.getters.getShape(shape) # shape.encode("utf-8")
+                                
+                                if not edCore.helpers.attrExist( shape + ".customDisplacement"):
+                                    cmds.addAttr( shape, longName='customDisplacement', attributeType='bool')
+                                    cmds.setAttr( shape + '.customDisplacement', True )                                    
+                                else:                                    
+                                    cmds.setAttr( shape + '.customDisplacement', True )
+
                             else:
                                 edCore.showWarning("Must Select an Object with an Arnold Surface")
                         else:
@@ -405,8 +432,18 @@ class uiFunc():
 
         if type == "set":            
             sel = edCore.edToolsShadingSelectedAI
-            if sel:
+            if sel:                
+                # Update list of shapes with the material
+                selectedShapesCountOption = cmds.radioCollection( "edShadingShapesChange", q = True, select = True )                
+                
+                if selectedShapesCountOption == "edShadinAllShapes":
+                    self.changeShapesSelection("all")
+                else:
+                    self.changeShapesSelection("selected")
+
+                # Set attr from form
                 edCore.helpers.setEdToolsShading( type = type )                
+
             else:
                 edCore.showWarning("No Shader Selected")
 

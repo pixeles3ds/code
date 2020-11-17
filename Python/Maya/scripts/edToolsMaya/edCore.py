@@ -1054,8 +1054,10 @@ class helpers():
                     getTextureToFormPref( displacementTexture, "disp" )
 
                 # Load Preferences of Displacement Type and Iterations
-                if len(edToolsShadingShapes) == 1 :
-                    
+                if len(edToolsShadingShapes) >= 1:
+
+                    cmds.radioButton( 'edShadinAllShapes', e = True, select = True)
+
                     #Subdivition Type
                     subType = cmds.getAttr( edToolsShadingShapes[0] + ".aiSubdivType" )
                     subTypeRes = "None"
@@ -1076,6 +1078,7 @@ class helpers():
                     cmds.intSliderGrp( "edShadingDivisionsCount", e = True, v = subCount )
                     cmds.floatSliderGrp( "edShadingDisplacementHeight", e = True, v = disHeight )
                     cmds.checkBoxGrp( "edShadingAutoBumpDisp", edit = True, value1 = autoBump )
+
 
             
 
@@ -1217,16 +1220,24 @@ class helpers():
                 
                 for shape in shapes:
                     
-                    shape = shape.encode("utf-8")
+                    shape = shape.encode("utf-8")                    
 
-                    divTypeRes = 0
-                    if divType == "Catclark": divTypeRes = 1
-                    elif divType == "Linear": divTypeRes = 2
-                           
-                    cmds.setAttr( shape + '.aiDispAutobump', autobump )
-                    cmds.setAttr( shape + '.aiSubdivIterations',iterations )
-                    cmds.setAttr( shape + '.aiDispHeight', height )
-                    cmds.setAttr( shape + '.aiSubdivType', divTypeRes )
+                    customDis = 0
+                    # If shape has custom displacement do not do anything
+                    if helpers.attrExist( shape + ".customDisplacement"):                        
+                        if cmds.getAttr( shape + '.customDisplacement' ):
+                            customDis = 1
+
+                    if not customDis:
+
+                        divTypeRes = 0
+                        if divType == "Catclark": divTypeRes = 1
+                        elif divType == "Linear": divTypeRes = 2
+                               
+                        cmds.setAttr( shape + '.aiDispAutobump', autobump )
+                        cmds.setAttr( shape + '.aiSubdivIterations',iterations )
+                        cmds.setAttr( shape + '.aiDispHeight', height )
+                        cmds.setAttr( shape + '.aiSubdivType', divTypeRes )
 
             # Disconnecting displacement node
             else:

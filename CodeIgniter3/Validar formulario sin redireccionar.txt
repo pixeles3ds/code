@@ -1,0 +1,14 @@
+function getPostForm()
+{
+    $this->form_validation->set_rules('e-mail', 'Email', 'trim|required|valid_email');
+    $this->form_validation->set_rules('cellphone', 'Cellphone Number', 'trim|required|is_natural');
+    $this->form_validation->set_message('required', '%s is required.');
+    $this->form_validation->set_message('valid_email', '%s is not a valid Email Address');
+    $this->form_validation->set_message('is_natural', '%s can only contain numbers.');
+    $this->form_validation->set_error_delimiters('<li>', '</li>');
+
+    if($this->form_validation->run() == FALSE){
+        $this->index();
+    }
+
+}

@@ -1,0 +1,45 @@
+
+=====================================================
+ En funcion que captura el formulario
+=====================================================
+
+If you are validating your form in a different function than the one the form is loaded in, you can send your validation_errors() to any page that you redirect() by passing the validation_errors() method to $this->session->set_flashdata() like so:
+
+
+if ($this->form_validation->run() == FALSE) {
+
+    $this->session->set_flashdata('error', validation_errors());
+
+    redirect('/');
+}
+
+
+
+=====================================================
+ En funcion que se pagina que se quiere redireccionar
+=====================================================
+
+In your controller functions where you would like your errors or messages to be received you can then set them to the $data array like so:
+
+
+if (!empty($this->session->flashdata('message'))) {
+
+    $data['message'] = $this->session->flashdata('message');
+} elseif (!empty($this->session->flashdata('error'))) {
+
+    $data['error'] = $this->session->flashdata('error');
+}
+
+=====================================================
+ En la vista
+=====================================================
+
+<?php if (isset($message)) {
+
+    echo '<p class="alert alert-info">'.$message.'</p>';
+} elseif (isset($error)) {
+
+    echo '<p class="alert alert-danger"><strong>Error: </strong>'.$error.'</p>';
+}?>
+
+

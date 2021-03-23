@@ -9,3 +9,8 @@ Cursor on next ocurrence
 Undo cursor ocurrence
 
 	Ctrl + U
+
+
+Select content between quotes
+
+	Ctrl + Shift + Space

@@ -22,7 +22,7 @@ $this->db->query( $sql )->row();
 
 
 //----------------------------------------------
-// Create
+// INSERT
 //----------------------------------------------
 
 $capacitacion = array();		
@@ -36,8 +36,15 @@ $capacitacion["cupos_activos"] = 0;
 $this->db->insert('capacitaciones', $data );
 $id = $this->db->insert_id();	
 
+//----------------------------------------------
+// BULK INSERT
+//----------------------------------------------
 
-
+$data = array(
+	array( 'nombre'=>"Colombia", 'code'=>"COP", 'val'=>0, 'flag'=>"colombia.png" ),
+	array( 'nombre'=>"Mexico", 'code'=>"MXN", 'val'=>0, 'flag'=>"mexico.png" )
+);
+$this->db->insert_batch('currencies', $data );
 
 
 //---------------------------------------------------------

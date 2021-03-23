@@ -1,0 +1,2 @@
+SELECT * FROM clienteshistorial
+WHERE fecha > ( NOW() - INTERVAL 1 MONTH);

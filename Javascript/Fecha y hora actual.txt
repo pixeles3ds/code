@@ -1,0 +1,39 @@
+ function getHora() {
+
+    var currentTime = new Date()
+    var hours = currentTime.getHours()
+    var minutes = currentTime.getMinutes()
+
+    if (minutes < 10)
+      minutes = "0" + minutes;
+
+    var suffix = "AM";
+    if (hours >= 12) {
+      suffix = "PM";
+      hours = hours - 12;
+    }
+    if (hours == 0) {
+      hours = 12;
+    }
+    var current_time = hours + ":" + minutes + " " + suffix;
+    return current_time;
+  }
+
+
+
+  function hoy() {
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+
+    return dd + '/' + mm + '/' + yyyy;
+  }
